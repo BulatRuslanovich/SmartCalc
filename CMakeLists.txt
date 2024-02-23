@@ -20,88 +20,84 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS PrintSupport REQUIRED)
 
 set(PROJECT_SOURCES
-        interfaces/observer/observer_credit_interfaces.h
-        interfaces/observer/observer_deposit_interfaces.h
-        interfaces/observer/observer_graph_interfaces.h
-        interfaces/observer/observer_interface.h
-        interfaces/observer/observer_math_interfaces.h
-        interfaces/credit_controller_interface.h
-        interfaces/credit_model_interface.h
-        interfaces/credit_model_public_interface.h
-        interfaces/deposit_controller_interface.h
-        interfaces/deposit_model_interface.h
-        interfaces/deposit_model_public_interface.h
-        interfaces/graph_controller_interface.h
-        interfaces/graph_model_interface.h
-        interfaces/graph_model_public_interface.h
-        interfaces/math_controller_interface.h
-        interfaces/math_model_interface.h
-        interfaces/math_model_public_interface.h
-
-        controller/math_controller.cc
-        controller/math_controller.h
-        controller/graph_controller.cc
-        controller/graph_controller.h
-        controller/credit_controller.cc
-        controller/credit_controller.h
-        controller/deposit_controller.cc
-        controller/deposit_controller.h
-
-        models/math/math_model.cc
-        models/math/math_model.h
-        models/math/lexeme.cc
-        models/math/lexeme.h
-        models/math/lexer.cc
-        models/math/lexer.h
-        models/graph/graph_model.cc
-        models/graph/graph_model.h
-        models/credit/credit_model.cc
-        models/credit/credit_model.h
-        models/deposit/deposit_model.cc
-        models/deposit/deposit_model.h
-        models/calc_exception.h
-        models/finance_exception.h
-
-        ui/main_view.ui
-        ui/math_view.ui
-        ui/graph_view.ui
-        ui/deposit_view.ui
-        ui/credit_view.ui
-        ui/qrc.qrc
-
-        view/main_view.cc
-        view/main_view.h
-        view/math_view.cc
-        view/math_view.h
-        view/graph_view.cc
-        view/graph_view.h
-        view/deposit_view.cc
-        view/deposit_view.h
-        view/credit_view.cc
-        view/credit_view.h
-        view/view_helpers.cc
-        view/view_helpers.h
-        view/widgets/qcustomplot.cc
-        view/widgets/qcustomplot.h
-
-        helpers/notifier.cc
-        helpers/notifier.h
-        helpers/math_helpers.cc
-        helpers/math_helpers.h
-        helpers/string_helpers.cc
-        helpers/string_helpers.h
-
-        calc_model_facade.cc
-        calc_model_facade.h
-        container_calc_app.cc
-        container_calc_app.h
-        main.cc
+#        interfaces/observer/observer_credit_interfaces.h
+#        interfaces/observer/observer_deposit_interfaces.h
+#        interfaces/observer/observer_graph_interfaces.h
+#        interfaces/observer/observer_interface.h
+#        interfaces/observer/observer_math_interfaces.h
+#        interfaces/credit_controller_interface.h
+#        interfaces/credit_model_interface.h
+#        interfaces/credit_model_public_interface.h
+#        interfaces/deposit_controller_interface.h
+#        interfaces/deposit_model_interface.h
+#        interfaces/deposit_model_public_interface.h
+#        interfaces/graph_controller_interface.h
+#        interfaces/graph_model_interface.h
+#        interfaces/graph_model_public_interface.h
+#        interfaces/math_controller_interface.h
+#        interfaces/math_model_interface.h
+#        interfaces/math_model_public_interface.h
+#
+#        controller/math_controller.cc
+#        controller/math_controller.h
+#        controller/graph_controller.cc
+#        controller/graph_controller.h
+#        controller/credit_controller.cc
+#        controller/credit_controller.h
+#        controller/deposit_controller.cc
+#        controller/deposit_controller.h
+#
+#        models/math/math_model.cc
+#        models/math/math_model.h
+#        models/math/lexeme.cc
+#        models/math/lexeme.h
+#        models/math/lexer.cc
+#        models/math/lexer.h
+#        models/graph/graph_model.cc
+#        models/graph/graph_model.h
+#        models/credit/credit_model.cc
+#        models/credit/credit_model.h
+#        models/deposit/deposit_model.cc
+#        models/deposit/deposit_model.h
+#        models/calc_exception.h
+#        models/finance_exception.h
+#
+#        ui/main_view.ui
+#        ui/math_view.ui
+#        ui/graph_view.ui
+#        ui/deposit_view.ui
+#        ui/credit_view.ui
+#        ui/qrc.qrc
+#
+#        view/main_view.cc
+#        view/main_view.h
+#        view/math_view.cc
+#        view/math_view.h
+#        view/graph_view.cc
+#        view/graph_view.h
+#        view/deposit_view.cc
+#        view/deposit_view.h
+#        view/credit_view.cc
+#        view/credit_view.h
+#        view/view_helpers.cc
+#        view/view_helpers.h
+#        view/widgets/qcustomplot.cc
+#        view/widgets/qcustomplot.h
+#
+#        helpers/notifier.cc
+#        helpers/notifier.h
+#        helpers/math_helpers.cc
+#        helpers/math_helpers.h
+#        helpers/string_helpers.cc
+#        helpers/string_helpers.h
+#
+#        calc_model_facade.cc
+#        calc_model_facade.h
+#        container_calc_app.cc
+#        container_calc_app.h
+#        main.cc
 )
 
-set(MACOSX_BUNDLE_ICON_FILE calc.icns)
-set(app_icon_macos "${CMAKE_CURRENT_SOURCE_DIR}/ui/images/calc.icns")
-set_source_files_properties(${app_icon_macos} PROPERTIES
-        MACOSX_PACKAGE_LOCATION "Resources")
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(SmartCalcV2
@@ -109,7 +105,6 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
             ${PROJECT_SOURCES}
             ${app_icon_macos}
     )
-
 else()
     if(ANDROID)
         add_library(SmartCalcV2 SHARED

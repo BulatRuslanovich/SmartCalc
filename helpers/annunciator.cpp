@@ -19,11 +19,11 @@ void Annunciator::RemoveObserver(IObserverError* observer) {
 }
 
 void Annunciator::UpdateObservers() {
-    std::for_each(updateObservers.cbegin(), updateObservers.cend(), [](IObserverUpdate* item) {item.Update()})
+    std::for_each(updateObservers.cbegin(), updateObservers.cend(), [](IObserverUpdate* item) {item->Update();});
 }
 
 void Annunciator::ErrorObservers(const std::pair<std::string, std::string>& error) {
-    std::for_each(errorObservers.cbegin(), errorObservers.cend(), [&error](IObserverError* item) {item->Error(error)})
+    std::for_each(errorObservers.cbegin(), errorObservers.cend(), [&error](IObserverError* item) {item->Error(error);});
 }
 
 }  // namespace s21
