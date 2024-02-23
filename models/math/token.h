@@ -34,7 +34,6 @@ enum TokenType {
   xToken,         // x
   piToken,        // Математическая константа Пи
   eToken,         // Математическая константа Е
-  percentToken,   // %
 };
 
 struct Token final {

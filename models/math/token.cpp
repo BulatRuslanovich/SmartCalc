@@ -10,7 +10,7 @@ Token::Token()
     : type(unknownToken), str(""), priority(0), left2right(true), value(0) {}
 
 Token::Token(TokenType type, const std::string &str, int priority,
-               bool left2right, double value)
+             bool left2right, double value)
     : type(type),
       str(str),
       priority(priority),
@@ -18,16 +18,15 @@ Token::Token(TokenType type, const std::string &str, int priority,
       value(value) {}
 
 Token::Token(TokenType type, const std::string &str, int priority,
-               bool left2right)
+             bool left2right)
     : type(type),
       str(str),
       priority(priority),
       left2right(left2right),
       value(std::numeric_limits<double>::quiet_NaN()) {}
 
-
 Token Token::MakeToken(TokenType type, double value,
-                          const std::string &string) {
+                       const std::string &string) {
   switch (type) {
     case lBracketToken:
       return Token{lBracketToken, "(", 0, true};
@@ -82,28 +81,29 @@ Token Token::MakeToken(TokenType type, double value,
 }
 
 bool Token::IsConst() const noexcept {
-  return  type == numberToken || type == xToken || type == eToken ||
-      type == piToken;
+  return type == numberToken || type == xToken || type == eToken ||
+         type == piToken;
 }
 
 bool Token::IsFunc() const noexcept {
   return type == cosToken || type == sinToken || type == tanToken ||
-      type == acosToken || type == asinToken || type == atanToken ||
-      type == sqrtToken || type == lnToken || type == logToken;
-
+         type == acosToken || type == asinToken || type == atanToken ||
+         type == sqrtToken || type == lnToken || type == logToken;
 }
 
 bool Token::IsOperator() const noexcept {
   return type == addToken || type == subToken || type == divToken ||
-      type == mulToken || type == powToken || type == unMinusToken ||
-      type == unPlusToken || type == modToken || type == percentToken;
-
+         type == mulToken || type == powToken || type == unMinusToken ||
+         type == unPlusToken || type == modToken;
 }
 
 bool Token::IsUnary() const noexcept {
-  return type == unMinusToken || type == unPlusToken || type == percentToken || IsFunc();
+  return type == unMinusToken || type == unPlusToken || IsFunc();
 }
 
 bool Token::IsBinary() const noexcept {
-  return  type == addToken || type == subToken || type == divToken || type == mulToken || type == powToken || type == modToken;
+  return type == addToken || type == subToken || type == divToken ||
+         type == mulToken || type == powToken || type == modToken;
+}
+
 }
