@@ -6,6 +6,7 @@
 #define SMARTCALCV2_MATHMODEL_H
 #include <list>
 #include <string>
+#include <stack>
 
 #include "../calcException.h"
 #include "tokenHandle.h"
@@ -34,7 +35,7 @@ class MathModel final {
   std::string getExpression() const { return expression; };
   std::string getRpnExpression();
   double getX_Value() const noexcept { return x; };
-  double getResult() const noexcept { return result; };
+  double getResult() const noexcept { return mathResult; };
   bool getIsCalc() const noexcept { return isCalc; };
 
   void Calculate();
@@ -47,7 +48,7 @@ class MathModel final {
   double CalcX(double x = 0);
   double CalcUnaryOp(double value, TokenType type) const noexcept;
   double CalcBinaryOp(double value1, double value2, TokenType type) const noexcept;
-
+  static void AppendStrWithPopStack(std::string& res, std::stack<Token>& stack, std::string& str);
   bool needInit;
   bool isCalc;
   double x;
