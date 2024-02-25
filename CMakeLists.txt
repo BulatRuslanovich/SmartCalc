@@ -56,6 +56,8 @@ set(PROJECT_SOURCES
         interfaces/IMathController.h
         models/graph/GraphModel.cpp
         models/graph/GraphModel.h
+        models/credit/creditModel.cpp
+        models/credit/creditModel.h
 
 
 )
