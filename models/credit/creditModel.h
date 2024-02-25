@@ -31,7 +31,7 @@ class CreditModel final {
     _isCalc = false;
   }
 
-  void setMonths(double newMonths) {
+  void setMonths(int newMonths) {
     _months = newMonths;
     _isCalc = false;
   }

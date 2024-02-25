@@ -58,6 +58,8 @@ set(PROJECT_SOURCES
         models/graph/GraphModel.h
         models/credit/creditModel.cpp
         models/credit/creditModel.h
+        models/deposit/DepositModel.cpp
+        models/deposit/DepositModel.h
 
 
 )
