@@ -60,6 +60,14 @@ set(PROJECT_SOURCES
         models/credit/creditModel.h
         models/deposit/DepositModel.cpp
         models/deposit/DepositModel.h
+        controllers/MathController.cpp
+        controllers/MathController.h
+        controllers/GraphController.cpp
+        controllers/GraphController.h
+        controllers/CreditController.cpp
+        controllers/CreditController.h
+        controllers/DepositController.cpp
+        controllers/DepositController.h
 
 
 )
