@@ -2,8 +2,8 @@
 // Created by bulatruslanovich on 22/02/2024.
 //
 
-#ifndef SMARTCALC_IGRAPHCONTROLLER_H
-#define SMARTCALC_IGRAPHCONTROLLER_H
+#ifndef SMARTCALC_IDEPOSITCONTROLLER_H
+#define SMARTCALC_IDEPOSITCONTROLLER_H
 
 #include <QString>
 
@@ -28,6 +28,6 @@ class IDepositController {
     virtual void ClearDepositOperationsList() = 0;
     virtual void CalculateDeposit() = 0;
 };
-
 }  // namespace s21
-#endif  // SMARTCALC_IGRAPHCONTROLLER_H
+
+#endif  // SMARTCALC_IDEPOSITCONTROLLER_H

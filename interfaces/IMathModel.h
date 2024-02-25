@@ -2,8 +2,8 @@
 // Created by bulatruslanovich on 22/02/2024.
 //
 
-#ifndef SMARTCALC_IMATHMODELPUBLIC_H
-#define SMARTCALC_IMATHMODELPUBLIC_H
+#ifndef SMARTCALC_IMATHMODEL_H
+#define SMARTCALC_IMATHMODEL_H
 
 #include "IMathModelPublic.h"
 

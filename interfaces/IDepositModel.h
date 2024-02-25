@@ -2,8 +2,8 @@
 // Created by bulatruslanovich on 22/02/2024.
 //
 
-#ifndef SMARTCALC_IMATHMODELPUBLIC_H
-#define SMARTCALC_IMATHMODELPUBLIC_H
+#ifndef SMARTCALC_IDEPOSITMODEL_H
+#define SMARTCALC_IDEPOSITMODEL_H
 
 #include "IDepositModelPublic.h"
 
@@ -29,8 +29,6 @@ class IDepositModel : public IDepositModelPublic {
     virtual void CalculateDeposit() = 0;
 
 };
-
-
 }
 
-#endif  // SMARTCALC_IMATHMODELPUBLIC_H
+#endif  // SMARTCALC_IDEPOSITMODELPUBLIC_H

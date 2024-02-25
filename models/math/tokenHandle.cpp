@@ -13,6 +13,11 @@
 
 namespace s21 {
 
+/**
+ * \brief Парсит строку на токены.
+ * \param str Строка для парсинга.
+ * \return Список токенов, полученных в результате парсинга строки.
+ */
 std::list<Token> tokenHandle::ParseTokens(const std::string& str) {
   std::list<Token> tokenList;
   std::string lowerStr{str};
@@ -30,7 +35,7 @@ std::list<Token> tokenHandle::ParseTokens(const std::string& str) {
       view = newView; // ? auto [token, view] = GetNumTokenFromStr(view); не работает
       tokenList.push_back(token);
     } else {
-      auto [token, newView] = GetNumTokenFromStr(view);
+      auto [token, newView] = GetNoNumTokenFromStr(view);
       if (token.type == unknownToken) {
         throw std::invalid_argument("Unknown token in parser");
       }
@@ -45,24 +50,30 @@ std::list<Token> tokenHandle::ParseTokens(const std::string& str) {
   return tokenList;
 }
 
+/**
+ * \brief Корректирует список токенов, добавляя недостающие скобки в выражениях.
+ * \param list Список токенов для корректировки.
+ */
 void tokenHandle::FixTokenList(std::list<Token>& list) {
-  tokenHandle::FixUnOperationTokensList(list);
+  tokenHandle::FixUnOperationTokensList(list); // Корректирует унарные операции в списке
 
-  int lbracketCount = 0;
-  int isOpen = 0;
+  int lbracketCount = 0; // Счётчик открывающих скобок
+  int isOpen = 0; // Показывает, открыта ли текущая скобка
 
   auto tokenBegin = list.begin();
   auto tokenEnd = list.end();
 
-  for (int  i = 0; tokenBegin != tokenEnd; ++i, ++tokenBegin) {
+  for (int i = 0; tokenBegin != tokenEnd; ++i, ++tokenBegin) {
     Token check = *tokenBegin;
     Token prevCheck;
 
+    // Получаем предыдущий токен в списке
     if (i > 0) {
       auto tmp = tokenBegin;
       prevCheck = *(--tmp);
     }
 
+    // Подсчёт открытых и закрытых скобок
     if (lbracketCount > 0 && check.type == lBracketToken) {
       ++isOpen;
     }
@@ -71,16 +82,17 @@ void tokenHandle::FixTokenList(std::list<Token>& list) {
       --isOpen;
     }
 
-    // автодобавление ( после функции, если ползователь не удостоися сделать этого
+    // Автоматическое добавление открывающей скобки после функции, если пользователь забыл
     if (i > 0 && prevCheck.IsFunc() && check.type != lBracketToken) {
-      list.insert(tokenBegin, Token::MakeToken(lBracketToken));
+      list.insert(tokenBegin, Token::MakeToken(lBracketToken)); // Вставляем открывающую скобку
 
-      ++lbracketCount;
+      ++lbracketCount; // Увеличиваем счётчик открывающих скобок
       continue;
     }
 
-    // закрывает авоматически открытые скобки: sin(sin(sin(sin(x + ))))
+    // Закрывает автоматически открытые скобки: sin(sin(sin(sin(x + ))))
     if (lbracketCount > 0 && !check.IsFunc() && check.type != lBracketToken && !isOpen) {
+      // Добавляем недостающие закрывающие скобки
       while (lbracketCount > 0) {
         list.insert(tokenBegin, Token::MakeToken(rBracketToken));
         --lbracketCount;
@@ -88,6 +100,7 @@ void tokenHandle::FixTokenList(std::list<Token>& list) {
     }
   }
 
+  // Добавляем недостающие закрывающие скобки в конце списка, если они остались
   if (lbracketCount > 0) {
     while (lbracketCount > 0) {
       list.insert(tokenBegin, Token::MakeToken(rBracketToken));
@@ -96,9 +109,17 @@ void tokenHandle::FixTokenList(std::list<Token>& list) {
   }
 }
 
-// вначале прога не шарит какой он токен унарный или бинарный.
-// тут все унарные товарищи до сей момента скрывавшие этого
-// клеймятся таковыми каковыми они есть
+
+/**
+ * \brief Корректирует список токенов, присваивая унарные операции токенам, которые ранее были определены как бинарные.
+ * \param list Список токенов для корректировки.
+ *
+ * В начале работы программы токены операций не различаются на унарные или бинарные.
+ * Эта функция сканирует список токенов и определяет, является ли текущий токен унарной операцией,
+ * основываясь на его позиции в выражении и предыдущих токенах.
+ * Если текущий токен должен быть унарной операцией, но ранее был определен как бинарный оператор или
+ * расположен после открывающей скобки, его тип токена изменяется на соответствующий унарный оператор.
+ */
 void tokenHandle::FixUnOperationTokensList(std::list<Token>& list) {
   auto tokenBegin = list.begin();
   auto tokenEnd = list.end();
@@ -107,9 +128,6 @@ void tokenHandle::FixUnOperationTokensList(std::list<Token>& list) {
   for (int i = 0; tokenBegin != tokenEnd; ++i, ++tokenBegin) {
     Token check = *tokenBegin;
 
-    // +1...
-    //...)-1...
-    //...*-1...
     if (i == 0 || prevCheck.IsOperator() || prevCheck.type == lBracketToken) {
       if (check.type == addToken) {
         *tokenBegin = Token::MakeToken(unPlusToken);
@@ -123,6 +141,12 @@ void tokenHandle::FixUnOperationTokensList(std::list<Token>& list) {
 }
 
 
+/**
+ * \brief Добавляет токен к строке выражения и возвращает результат.
+ * \param str Исходная строка выражения.
+ * \param token Токен, который нужно добавить к выражению.
+ * \return Строка выражения после добавления токена.
+ */
 std::string tokenHandle::AddTokenToStr(const std::string& str, const Token& token) {
   std::list<Token> tokenList = tokenHandle::ParseTokens(str);
 
@@ -201,6 +225,11 @@ std::string tokenHandle::AddTokenToStr(const std::string& str, const Token& toke
   return result;
 }
 
+/**
+ * \brief Добавляет десятичную точку к числу в конце строки выражения и возвращает результат.
+ * \param str Исходная строка выражения.
+ * \return Строка выражения после добавления десятичной точки.
+ */
 std::string tokenHandle::AddPointToStr(const std::string& str) {
   std::list<Token> tokenList = tokenHandle::ParseTokens(str);
 
@@ -225,6 +254,11 @@ std::string tokenHandle::AddPointToStr(const std::string& str) {
   return  result;
 }
 
+/**
+ * \brief Удаляет последний токен из строки выражения и возвращает результат.
+ * \param str Исходная строка выражения.
+ * \return Строка выражения после удаления последнего токена.
+ */
 std::string tokenHandle::RemoveTokenFromStrEnd(const std::string& str) {
   std::list<Token> tokenList = tokenHandle::ParseTokens(str);
 
@@ -257,6 +291,15 @@ std::string tokenHandle::RemoveTokenFromStrEnd(const std::string& str) {
   std::string result = tokenHandle::ListToStr(tokenList);
   return result;
 }
+
+/**
+ * \brief Преобразует список токенов в строку.
+ * \param list Список токенов.
+ * \return Строка, содержащая токены из списка, разделенные пробелами.
+ *
+ * Эта функция преобразует список токенов в строку, разделяя каждый токен пробелом.
+ * Результирующая строка содержит все токены из списка, объединенные в одну строку.
+ */
 std::string tokenHandle::ListToStr(const std::list<Token>& list) {
   std::string result;
   auto tokenBegin = list.begin();
@@ -302,7 +345,17 @@ std::string tokenHandle::ListToStr(const std::list<Token>& list) {
   return  result;
 }
 
-
+/**
+ * \brief Получает токен из строки без учета числовых значений.
+ * \param str Строка, из которой извлекается токен.
+ * \return Пара, содержащая токен и оставшуюся часть строки после извлечения токена.
+ *
+ * Эта функция извлекает токен из строки, игнорируя числовые значения.
+ * Она ищет совпадение начала строки с ключами в таблице соответствия типов токенов.
+ * Если найдено совпадение, функция создает токен соответствующего типа и возвращает его вместе
+ * с оставшейся частью строки после извлечения токена.
+ * Если совпадение не найдено, функция возвращает пустой токен и оставшуюся часть входной строки.
+ */
 std::pair<Token, std::string_view> tokenHandle::GetNoNumTokenFromStr(const std::string_view& str) {
   Token token;
   std::string_view newView{str};
@@ -318,6 +371,16 @@ std::pair<Token, std::string_view> tokenHandle::GetNoNumTokenFromStr(const std::
 
   return {token, newView};
 }
+
+/**
+ * \brief Получает числовой токен из строки.
+ * \param str Строка, из которой извлекается числовой токен.
+ * \return Пара, содержащая числовой токен и оставшуюся часть строки после извлечения токена.
+ *
+ * Эта функция извлекает числовой токен из начала строки и возвращает его вместе с оставшейся частью строки.
+ * Для извлечения числа из строки используется std::from_chars, а для создания токена используется Token::MakeToken.
+ * Если извлечение числа не удалось (например, если строка не начинается с числа), функция бросает исключение std::invalid_argument.
+ */
 std::pair<Token, std::string_view> tokenHandle::GetNumTokenFromStr(const std::string_view& str) {
   Token token;
   std::string_view newView{str};
@@ -339,6 +402,15 @@ std::pair<Token, std::string_view> tokenHandle::GetNumTokenFromStr(const std::st
 
   return {token, newView};
 }
+
+/**
+ * \brief Проверяет, существует ли в списке токенов больше открывающих скобок, чем закрывающих.
+ * \param list Список токенов для проверки.
+ * \return true, если число открывающих скобок больше числа закрывающих, иначе false.
+ *
+ * Эта функция проходит по списку токенов и подсчитывает количество открывающих и закрывающих скобок.
+ * Если число открывающих скобок больше числа закрывающих, функция возвращает true, иначе false.
+ */
 bool tokenHandle::IsLBracketExist(const std::list<Token>& list) {
   int left = 0;
   int right = 0;
@@ -357,7 +429,15 @@ bool tokenHandle::IsLBracketExist(const std::list<Token>& list) {
 }
 
 
-// ---1 => -1 or --1 => 1
+/**
+ * \brief Добавляет унарный минус к списку токенов, если необходимо.
+ * \param list Список токенов, к которому нужно добавить унарный минус.
+ *
+ * Эта функция проверяет, нужно ли добавить унарный минус к списку токенов, и добавляет его при необходимости.
+ * В случае, если последний токен списка является правой скобкой, функция добавляет умножение и унарный минус.
+ * В противном случае функция анализирует последовательность токенов, чтобы определить, сколько унарных минусов уже присутствует.
+ * Если число унарных минусов четное, то добавляется еще один унарный минус.
+ */
 void tokenHandle::AddUnMinusToList(std::list<Token>& list)  {
   Token lastToken = list.back();
 

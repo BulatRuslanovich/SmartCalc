@@ -9,13 +9,13 @@
 
 namespace s21 {
 class IObserverGraphUpdate : public IObserverUpdate {
-   public:
-    virual ~IObserverGraphUpdate() = default;
-}
+ public:
+  virtual ~IObserverGraphUpdate() = default;
+};
 
 class IObserverGraphError : public IObserverError {
-   public:
-    virual ~IObserverGraphError() = default;
+ public:
+  virtual ~IObserverGraphError() = default;
+};
 }
-
 #endif  // SMARTCALC_IOBSERVERGRAPH_H

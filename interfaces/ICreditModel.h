@@ -2,13 +2,13 @@
 // Created by bulatruslanovich on 22/02/2024.
 //
 
-#ifndef SMARTCALC_IMATHMODELPUBLIC_H
-#define SMARTCALC_IMATHMODELPUBLIC_H
+#ifndef SMARTCALC_ICREDITMODEL_H
+#define SMARTCALC_ICREDITMODEL_H
 
 #include "ICreditModelPublic.h"
 
 namespace s21 {
-class ICreditModel {
+class ICreditModel : public ICreditModelPublic {
    public:
     virtual ~ICreditModel() = default;
     virtual void SetCreditSum(double sum) = 0;
@@ -18,8 +18,6 @@ class ICreditModel {
 
     virtual void CalculateCredit() = 0;
 };
-
-
 }
 
-#endif  // SMARTCALC_IMATHMODELPUBLIC_H
+#endif

@@ -2,8 +2,8 @@
 // Created by bulatruslanovich on 22/02/2024.
 //
 
-#ifndef SMARTCALC_IMATHMODELPUBLIC_H
-#define SMARTCALC_IMATHMODELPUBLIC_H
+#ifndef SMARTCALC_ICREDITMODELPUBLIC_H
+#define SMARTCALC_ICREDITMODELPUBLIC_H
 
 #include <string>
 
@@ -34,8 +34,6 @@ class ICreditModelPublic {
     virtual void AddObserver(IObserverCreditError* observer) = 0;
     virtual void RemoveObserver(IObserverCreditError* observer) = 0;
 };
-
-
 }
 
-#endif  // SMARTCALC_IMATHMODELPUBLIC_H
+#endif  // SMARTCALC_ICREDITMODELPUBLIC_H

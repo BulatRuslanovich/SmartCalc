@@ -9,13 +9,16 @@
 
 namespace s21 {
 class IObserverMathUpdate : public IObserverUpdate {
-public:
-    virual ~IObserverMathUpdate() = default;
-}
+ public:
+  virtual ~IObserverMathUpdate() = default;
+};
 
 class IObserverMathError : public IObserverError {
-public:
-    virual ~IObserverMathError() = default;
+ public:
+  virtual ~IObserverMathError() = default;
+};
+
 }
+
 
 #endif  // SMARTCALC_IOBSERVERMATH_H

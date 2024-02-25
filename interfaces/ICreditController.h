@@ -2,8 +2,8 @@
 // Created by bulatruslanovich on 22/02/2024.
 //
 
-#ifndef SMARTCALC_IGRAPHCONTROLLER_H
-#define SMARTCALC_IGRAPHCONTROLLER_H
+#ifndef SMARTCALC_ICREDITCONTROLLER_H
+#define SMARTCALC_ICREDITCONTROLLER_H
 
 #include <QString>
 
@@ -20,6 +20,6 @@ class ICreditController {
 
     virtual void CalculateCredit() = 0;
 };
-
 }  // namespace s21
-#endif  // SMARTCALC_IGRAPHCONTROLLER_H
+
+#endif  // SMARTCALC_ICREDITCONTROLLER_H

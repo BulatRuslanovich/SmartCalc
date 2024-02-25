@@ -2,8 +2,8 @@
 // Created by bulatruslanovich on 22/02/2024.
 //
 
-#ifndef SMARTCALC_IMATHMODELPUBLIC_H
-#define SMARTCALC_IMATHMODELPUBLIC_H
+#ifndef SMARTCALC_IDEPOSITMODELPUBLIC_H
+#define SMARTCALC_IDEPOSITMODELPUBLIC_H
 
 #include <string>
 
@@ -36,8 +36,6 @@ class IDepositModelPublic {
     virtual void AddObserver(IObserverDepositError* observer) = 0;
     virtual void RemoveObserver(IObserverDepositError* observer) = 0;
 };
-
-
 }
 
-#endif  // SMARTCALC_IMATHMODELPUBLIC_H
+#endif  // SMARTCALC_IDEPOSITMODELPUBLIC_H

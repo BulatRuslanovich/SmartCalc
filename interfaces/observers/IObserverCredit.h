@@ -9,12 +9,13 @@
 
 namespace s21 {
 class IObserverCreditUpdate : public IObserverUpdate {
-   public:
-    virual ~IObserverCreditUpdate() = default;
-}
+ public:
+  virtual ~IObserverCreditUpdate() = default;
+};
 
 class IObserverCreditError : public IObserverError {
-   public:
-    virual ~IObserverCreditError() = default;
+ public:
+  virtual ~IObserverCreditError() = default;
+};
 }
 #endif  // SMARTCALC_IOBSERVERCREDIT_H

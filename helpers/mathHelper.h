@@ -14,7 +14,7 @@ double Round(double value, int precision);
 double FinanceRound(const double value);
 std::string intToString(int value);
 std::string doubleToString(double value, int precision = 2);
-std::string RemoveTrailingZeros(const std::string& input);
+std::string RemoveTrailingZero(const std::string& input);
 int GetDaysCount(int month, int year);
 
 }

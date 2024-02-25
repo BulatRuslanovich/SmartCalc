@@ -2,8 +2,8 @@
 // Created by bulatruslanovich on 22/02/2024.
 //
 
-#ifndef SMARTCALC_IMATHMODELPUBLIC_H
-#define SMARTCALC_IMATHMODELPUBLIC_H
+#ifndef SMARTCALC_IGRAPHMODEL_H
+#define SMARTCALC_IGRAPHMODEL_H
 
 #include "IGraphModelPublic.h"
 
@@ -23,4 +23,4 @@ class IGraphModel : public IGraphModelPublic {
 };
 }
 
-#endif  // SMARTCALC_IMATHMODELPUBLIC_H
+#endif  // SMARTCALC_IGRAPHMODELPUBLIC_H

@@ -9,12 +9,13 @@
 
 namespace s21 {
 class IObserverDepositUpdate : public IObserverUpdate {
-   public:
-    virual ~IObserverDepositUpdate() = default;
-}
+ public:
+  virtual ~IObserverDepositUpdate() = default;
+};
 
 class IObserverDepositError : public IObserverError {
-   public:
-    virual ~IObserverDepositError() = default;
+ public:
+  virtual ~IObserverDepositError() = default;
+};
 }
 #endif  // SMARTCALC_IOBSERVERDEPOSIT_H

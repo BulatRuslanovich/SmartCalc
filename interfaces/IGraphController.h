@@ -22,6 +22,6 @@ class IGraphController {
 
     virtual void CalculateGraph() = 0;
 };
-
 }  // namespace s21
+
 #endif  // SMARTCALC_IGRAPHCONTROLLER_H

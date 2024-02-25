@@ -6,6 +6,12 @@
 #include "stringHelper.h"
 
 namespace s21 {
+/**
+ * \brief Удаляет все ведущие пробельные символы из строки.
+ * \param str Ссылка на строку типа std::string_view, из которой нужно удалить пробелы.
+ * \note Функция выполняет изменение строки на месте.
+ * \note Не выбрасывает исключения.
+ */
 void TrimLeft(std::string_view& str) noexcept {
     std::size_t i = 0;
 
