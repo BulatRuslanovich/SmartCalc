@@ -79,6 +79,6 @@ class CreditModel final {
   double totalPayment;
 };
 
-}
+}  // namespace s21
 
 #endif  // SMARTCALCV2_CREDITMODEL_H

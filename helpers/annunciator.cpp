@@ -3,6 +3,7 @@
 //
 
 #include "annunciator.h"
+
 #include <algorithm>
 namespace s21 {
 /**
@@ -25,7 +26,7 @@ void Annunciator::RemoveObserver(IObserverUpdate* observer) {
  * \brief Добавляет наблюдателя для ошибок в списке наблюдателей.
  * \param observer Указатель на объект, реализующий интерфейс IObserverError.
  */
-void Annunciator::AddObserver(s21::IObserverError* observer){
+void Annunciator::AddObserver(s21::IObserverError* observer) {
   errorObservers.push_back(observer);
 }
 
@@ -41,16 +42,18 @@ void Annunciator::RemoveObserver(IObserverError* observer) {
  * \brief Уведомляет всех наблюдателей об обновлении.
  */
 void Annunciator::UpdateObservers() {
-  std::for_each(updateObservers.cbegin(), updateObservers.cend(), [](IObserverUpdate* item) {item->Update();});
+  std::for_each(updateObservers.cbegin(), updateObservers.cend(),
+                [](IObserverUpdate* item) { item->Update(); });
 }
 
 /**
  * \brief Уведомляет всех наблюдателей об ошибке.
  * \param error Пара строк, представляющая тип и описание ошибки.
  */
-void Annunciator::ErrorObservers(const std::pair<std::string, std::string>& error) {
-  std::for_each(errorObservers.cbegin(), errorObservers.cend(), [&error](IObserverError* item) {item->Error(error);});
+void Annunciator::ErrorObservers(
+    const std::pair<std::string, std::string>& error) {
+  std::for_each(errorObservers.cbegin(), errorObservers.cend(),
+                [&error](IObserverError* item) { item->Error(error); });
 }
-
 
 }  // namespace s21

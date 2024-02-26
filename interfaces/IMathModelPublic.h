@@ -11,19 +11,19 @@
 
 namespace s21 {
 class IMathModelPublic {
-   public:
-    virtual ~IMathModelPublic() = default;
+ public:
+  virtual ~IMathModelPublic() = default;
 
-    virtual double GetResult() = 0;
-    virtual double GetX() = 0;
-    virtual std::string GetExpression() = 0;
-    virtual bool IsCalc() = 0;
+  virtual double GetResult() = 0;
+  virtual double GetX() = 0;
+  virtual std::string GetExpression() = 0;
+  virtual bool IsCalc() = 0;
 
-    virtual void AddObserver(IObserverMathUpdate* observer) = 0;
-    virtual void RemoveObserver(IObserverMathUpdate* observer) = 0;
-    virtual void AddObserver(IObserverMathError* observer) = 0;
-    virtual void RemoveObserver(IObserverMathError* observer) = 0;
+  virtual void AddObserver(IObserverMathUpdate* observer) = 0;
+  virtual void RemoveObserver(IObserverMathUpdate* observer) = 0;
+  virtual void AddObserver(IObserverMathError* observer) = 0;
+  virtual void RemoveObserver(IObserverMathError* observer) = 0;
 };
-}
+}  // namespace s21
 
 #endif  // SMARTCALC_IMATHMODELPUBLIC_H

@@ -52,4 +52,4 @@ void DepositController::ClearDepositOperationsList() {
 
 void DepositController::CalculateDeposit() { _model->CalculateDeposit(); }
 
-}// namespace s21
+}  // namespace s21

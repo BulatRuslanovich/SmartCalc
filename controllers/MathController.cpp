@@ -7,18 +7,12 @@
 namespace s21 {
 MathController::MathController(IMathModel *model) : _model(model) {}
 void MathController::SetExpression(const QString &str) {
-  _model->SetExpression(str.toStdString()); // из view в model
+  _model->SetExpression(str.toStdString());  // из view в model
 }
-void MathController::SetX(double x) {
-  _model->SetX(x);
-}
+void MathController::SetX(double x) { _model->SetX(x); }
 void MathController::ExpressionAdd(const char *add) {
   _model->ExpressionAdd(add);
 }
-void MathController::ExpressionEraseEnd() {
-  _model->ExpressionEraseEnd();
-}
-void MathController::CalculateX() {
-  _model->CalculateX();
-}
+void MathController::ExpressionEraseEnd() { _model->ExpressionEraseEnd(); }
+void MathController::CalculateX() { _model->CalculateX(); }
 }  // namespace s21

@@ -38,7 +38,7 @@ class GraphModel final {
   void setYScaleAuto(bool flag) noexcept { yScaleAuto = flag; }
 
   double getXBegin() const noexcept { return xBegin; }
-  double getYBegin() const noexcept { return yBegin;}
+  double getYBegin() const noexcept { return yBegin; }
   double getXEnd() const noexcept { return xEnd; }
   double getYEnd() const noexcept { return yEnd; }
   bool getYScaleAuto() const noexcept { return yScaleAuto; }

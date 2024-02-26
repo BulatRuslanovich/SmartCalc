@@ -18,12 +18,12 @@ class CreditController final : public ICreditController {
   CreditController& operator=(const CreditController& other) = delete;
   CreditController& operator=(CreditController&& other) = delete;
   ~CreditController() override = default;
-  
+
   void SetCreditSum(double sum) override;
   void SetCreditMonths(int months) override;
   void SetCreditInterest(double interest) override;
   void SetCreditType(int type) override;
-  
+
   void CalculateCredit() override;
 
  private:

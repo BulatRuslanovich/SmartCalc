@@ -7,13 +7,16 @@
 #include <QMessageBox>
 
 #include "ViewHelpers.h"
-//#include "../ui/ui_CreditView.h"
-
+// #include "../ui/ui_CreditView.h"
 
 namespace s21 {
 
 CreditView::CreditView(ICreditController* controller, ICreditModelPublic* model,
-                       QWidget* parent) : QWidget(parent), _ui(new Ui::CreditView), _controller(controller), _model(model) {
+                       QWidget* parent)
+    : QWidget(parent),
+      _ui(new Ui::CreditView),
+      _controller(controller),
+      _model(model) {
   _ui->setupUi(this);
   SetupCreditButtons();
   _model->AddObserver(static_cast<IObserverCreditUpdate*>(this));
@@ -48,15 +51,16 @@ void CreditView::Error(const std::pair<std::string, std::string>& error) {
   }
 }
 
-
 void CreditView::SetupCreditButtons() {
-  connect(_ui->creditCalcButton, SIGNAL(clicked()), this, SLOT(HandleCreditButton()));
+  connect(_ui->creditCalcButton, SIGNAL(clicked()), this,
+          SLOT(HandleCreditButton()));
 
-  connect(_ui->creditSumEdit, SIGNAL(textChanged(QString)), this, SLOT(HandleCreditSumChanged()));
-  connect(_ui->creditMonthEdit, SIGNAL(textChanged(QString)), this, SLOT(HandleCreditMonthsChanged()));
-  connect(_ui->creditInterestEdit, SIGNAL(textChanged(QString)), this, SLOT(HandleCreditInterestChanged()));
-
-
+  connect(_ui->creditSumEdit, SIGNAL(textChanged(QString)), this,
+          SLOT(HandleCreditSumChanged()));
+  connect(_ui->creditMonthEdit, SIGNAL(textChanged(QString)), this,
+          SLOT(HandleCreditMonthsChanged()));
+  connect(_ui->creditInterestEdit, SIGNAL(textChanged(QString)), this,
+          SLOT(HandleCreditInterestChanged()));
 }
 
 void CreditView::UpdateInputFieldsFromModel() {
@@ -77,7 +81,8 @@ void CreditView::UpdateInputFieldsFromModel() {
   }
 
   _ui->creditMonthEdit->setText(QString::number(months));
-  _ui->creditInterestEdit->setText(ViewHelpers::DoubleToQStr(_model->GetInterest(), 2));
+  _ui->creditInterestEdit->setText(
+      ViewHelpers::DoubleToQStr(_model->GetInterest(), 2));
 }
 
 void CreditView::UpdateResultFromModel() {
@@ -148,21 +153,24 @@ void CreditView::HandleCreditButton() {
 
   bool isCorrectInput;
 
-  double sum = _ui->creditSumEdit->text().replace(",", ".").toDouble(&isCorrectInput);
+  double sum =
+      _ui->creditSumEdit->text().replace(",", ".").toDouble(&isCorrectInput);
 
   if (!isCorrectInput) {
     SetCreditSumError("С полем суммы какие приколы 0_0");
     return;
   }
 
-  int months = _ui->creditMonthEdit->text().replace(",", ".").toInt(&isCorrectInput);
+  int months =
+      _ui->creditMonthEdit->text().replace(",", ".").toInt(&isCorrectInput);
 
   if (!isCorrectInput) {
     SetCreditMonthsError("Полю месяцов не очень хорошо -_-");
     return;
   }
 
-  int interest = _ui->creditInterestEdit->text().replace(",", ".").toDouble(&isCorrectInput);
+  int interest = _ui->creditInterestEdit->text().replace(",", ".").toDouble(
+      &isCorrectInput);
 
   if (!isCorrectInput) {
     SetCreditInterestError("Проценты - это от 0 до 100, если что 0_0");
@@ -187,16 +195,10 @@ void CreditView::HandleCreditButton() {
   _controller->CalculateCredit();
 }
 
-void CreditView::HandleCreditSumChanged() {
-  ResetCreditSumError();
-}
+void CreditView::HandleCreditSumChanged() { ResetCreditSumError(); }
 
-void CreditView::HandleCreditMonthsChanged() {
-  ResetCreditMonthsError();
-}
+void CreditView::HandleCreditMonthsChanged() { ResetCreditMonthsError(); }
 
-void CreditView::HandleCreditInterestChanged() {
-  ResetCreditInterestError();
-}
+void CreditView::HandleCreditInterestChanged() { ResetCreditInterestError(); }
 
 }  // namespace s21

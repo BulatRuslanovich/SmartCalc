@@ -9,18 +9,18 @@
 
 namespace s21 {
 class IGraphModel : public IGraphModelPublic {
-   public:
-    virtual ~IGraphModel() = default;
+ public:
+  virtual ~IGraphModel() = default;
 
-    virtual void SetExpression(const std::string& newExp) = 0;
-    virtual void SetBeginX(double newX) = 0;
-    virtual void SetEndX(double newX) = 0;
-    virtual void SetBeginY(double newY) = 0;
-    virtual void SetEndY(double newY) = 0;
-    virtual void SetYScaleAuto(bool flag) = 0;
+  virtual void SetExpression(const std::string& newExp) = 0;
+  virtual void SetBeginX(double newX) = 0;
+  virtual void SetEndX(double newX) = 0;
+  virtual void SetBeginY(double newY) = 0;
+  virtual void SetEndY(double newY) = 0;
+  virtual void SetYScaleAuto(bool flag) = 0;
 
-    virtual void CalculateGraph() = 0;
+  virtual void CalculateGraph() = 0;
 };
-}
+}  // namespace s21
 
 #endif  // SMARTCALC_IGRAPHMODELPUBLIC_H

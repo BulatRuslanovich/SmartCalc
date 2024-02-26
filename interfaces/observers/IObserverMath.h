@@ -18,7 +18,6 @@ class IObserverMathError : public IObserverError {
   virtual ~IObserverMathError() = default;
 };
 
-}
-
+}  // namespace s21
 
 #endif  // SMARTCALC_IOBSERVERMATH_H

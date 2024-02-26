@@ -36,7 +36,8 @@ DepositModel::DepositModel() noexcept
  * @brief Выполняет расчет параметров депозита.
  *
  * Метод CalculateDeposit() осуществляет расчет параметров депозита,
- * используя текущие значения суммы, срока, процентной ставки и других параметров.
+ * используя текущие значения суммы, срока, процентной ставки и других
+ * параметров.
  */
 void DepositModel::CalculateDeposit() {
   ResetModelResults();
@@ -56,7 +57,10 @@ void DepositModel::ResetModelResults() noexcept {
 /**
  * @brief Проверяет корректность введенных данных модели депозита.
  *
- * Метод CheckModelData() проверяет корректность введенных данных модели депозита, включая сумму, срок, процентную ставку, налоги и операции с депозитом. Если какой-либо параметр некорректен, метод выбрасывает исключение.
+ * Метод CheckModelData() проверяет корректность введенных данных модели
+ * депозита, включая сумму, срок, процентную ставку, налоги и операции с
+ * депозитом. Если какой-либо параметр некорректен, метод выбрасывает
+ * исключение.
  */
 void DepositModel::CheckModelData() const {
   if (!CheckSum()) {
@@ -114,8 +118,10 @@ bool DepositModel::CheckMonth() const noexcept {
 /**
  * @brief Проверяет корректность введенной процентной ставки депозита.
  *
- * Метод CheckInterest() проверяет корректность введенной процентной ставки депозита.
- * @return true, если процентная ставка депозита корректна, в противном случае - false.
+ * Метод CheckInterest() проверяет корректность введенной процентной ставки
+ * депозита.
+ * @return true, если процентная ставка депозита корректна, в противном случае -
+ * false.
  * @note Этот метод не бросает исключений (noexcept).
  */
 bool DepositModel::CheckInterest() const noexcept {
@@ -184,111 +190,130 @@ void DepositModel::CheckOperations() const {
 /**
  * @brief Выполняет расчет вклада.
  *
- * Метод производит расчет параметров вклада, таких как общая сумма выплаты процентов,
- * общая сумма вклада и общий налог на доход. Результаты записываются в соответствующие поля класса.
+ * Метод производит расчет параметров вклада, таких как общая сумма выплаты
+ * процентов, общая сумма вклада и общий налог на доход. Результаты записываются
+ * в соответствующие поля класса.
  *
- * @throws s21::FinanceDateStartException Если указана некорректная дата начала вклада.
- * @throws s21::FinanceOperationNoMoneyException Если на вкладе недостаточно средств для проведения операции.
+ * @throws s21::FinanceDateStartException Если указана некорректная дата начала
+ * вклада.
+ * @throws s21::FinanceOperationNoMoneyException Если на вкладе недостаточно
+ * средств для проведения операции.
  */
 void DepositModel::CalculateHandle() {
-  int startYear = yearStart; // Получаем год начала
-  int startMonth = monthStart; // Получаем месяц начала
-  int startDay = dayStart; // Получаем день начала
+  int startYear = yearStart;    // Получаем год начала
+  int startMonth = monthStart;  // Получаем месяц начала
+  int startDay = dayStart;      // Получаем день начала
 
-  if (!CheckDate(startYear, startMonth, startDay)) { // Проверяем правильность даты начала
+  if (!CheckDate(startYear, startMonth,
+                 startDay)) {  // Проверяем правильность даты начала
     throw s21::FinanceDateStartException("Incorrect date start");
   }
 
-  double totalInterestPayment = 0; // Общая сумма выплаты процентов
-  double totalSum = _sum; // Общая сумма вклада
-  double totalTax; // Общий налог на доход
+  double totalInterestPayment = 0;  // Общая сумма выплаты процентов
+  double totalSum = _sum;  // Общая сумма вклада
+  double totalTax;         // Общий налог на доход
 
-  double pd = _interest / (100 * 365); // Расчет процентной ставки на день
-  double pdv = _interest / (100 * 366); // Расчет процентной ставки на високосный день
+  double pd = _interest / (100 * 365);  // Расчет процентной ставки на день
+  double pdv =
+      _interest / (100 * 366);  // Расчет процентной ставки на високосный день
 
-  int counter = _months; // Устанавливаем счетчик на количество месяцев
+  int counter = _months;  // Устанавливаем счетчик на количество месяцев
 
-  while (counter >= 0) { // Пока счетчик не достиг нуля
-    int numDays = mathHelper::GetDaysCount(startMonth, startYear); // Получаем количество дней в месяце
-    int paymentDays = 0; // Счетчик дней выплат
-    double monthSum = 0; // Общая сумма за месяц
+  while (counter >= 0) {  // Пока счетчик не достиг нуля
+    int numDays = mathHelper::GetDaysCount(
+        startMonth, startYear);  // Получаем количество дней в месяце
+    int paymentDays = 0;  // Счетчик дней выплат
+    double monthSum = 0;  // Общая сумма за месяц
 
-    for (int day = 1; day <= numDays; ++day) { // Проходим по всем дням месяца
-      if (totalSum < 0) { // Если общая сумма становится отрицательной
+    for (int day = 1; day <= numDays; ++day) {  // Проходим по всем дням месяца
+      if (totalSum < 0) {  // Если общая сумма становится отрицательной
         throw s21::FinanceOperationNoMoneyException("No money :(");
       }
 
-      if (counter == _months) { // Если это первый месяц
-        if (day <= startDay) { // Если еще не наступил день начала
-          if (day == startDay) { // Если сегодня день начала
-            OperationsHandle(startYear, startMonth, day, totalSum); // Обрабатываем операции
+      if (counter == _months) {  // Если это первый месяц
+        if (day <= startDay) {  // Если еще не наступил день начала
+          if (day == startDay) {  // Если сегодня день начала
+            OperationsHandle(startYear, startMonth, day,
+                             totalSum);  // Обрабатываем операции
           }
 
           continue;
         }
       }
 
-      if (counter == 0) { // Если это последний месяц
-        if (day > startDay) { // Если уже прошел день начала
+      if (counter == 0) {      // Если это последний месяц
+        if (day > startDay) {  // Если уже прошел день начала
           continue;
         }
       }
 
       double percentSum;
 
-      if (mathHelper::GetDaysCount(2, startYear) == 29) { // Если год високосный
-        percentSum = pdv * totalSum; // Рассчитываем процентную сумму
+      if (mathHelper::GetDaysCount(2, startYear) ==
+          29) {                       // Если год високосный
+        percentSum = pdv * totalSum;  // Рассчитываем процентную сумму
       } else {
-        percentSum = pd * totalSum; // Иначе рассчитываем процентную сумму
+        percentSum = pd * totalSum;  // Иначе рассчитываем процентную сумму
       }
 
-      if (payPeriod == Day) { // Если период выплаты - ежедневно
-        percentSum = mathHelper::Round(percentSum, 2); // Округляем сумму до двух знаков после запятой
+      if (payPeriod == Day) {  // Если период выплаты - ежедневно
+        percentSum = mathHelper::Round(
+            percentSum, 2);  // Округляем сумму до двух знаков после запятой
 
-        if (_capitalization) { // Если проценты капитализируются
-          totalSum += percentSum; // Добавляем проценты к общей сумме
+        if (_capitalization) {  // Если проценты капитализируются
+          totalSum += percentSum;  // Добавляем проценты к общей сумме
         }
       }
 
-      monthSum += percentSum; // Добавляем проценты за день к общей сумме за месяц
-      ++paymentDays; // Увеличиваем количество дней выплат
+      monthSum +=
+          percentSum;  // Добавляем проценты за день к общей сумме за месяц
+      ++paymentDays;  // Увеличиваем количество дней выплат
 
-      OperationsHandle(startYear, startMonth, day, totalSum); // Обрабатываем операции
+      OperationsHandle(startYear, startMonth, day,
+                       totalSum);  // Обрабатываем операции
     }
 
-    if (payPeriod == Month) { // Если период выплаты - ежемесячно
-      monthSum = mathHelper::Round(monthSum, 2); // Округляем сумму за месяц до двух знаков после запятой
+    if (payPeriod == Month) {  // Если период выплаты - ежемесячно
+      monthSum = mathHelper::Round(
+          monthSum,
+          2);  // Округляем сумму за месяц до двух знаков после запятой
 
-      if (_capitalization) { // Если проценты капитализируются
-        totalSum += monthSum; // Добавляем проценты за месяц к общей сумме
+      if (_capitalization) {  // Если проценты капитализируются
+        totalSum += monthSum;  // Добавляем проценты за месяц к общей сумме
       }
     }
 
-    totalInterestPayment += monthSum; // Добавляем сумму за месяц к общей сумме выплаты процентов
+    totalInterestPayment +=
+        monthSum;  // Добавляем сумму за месяц к общей сумме выплаты процентов
 
-    ++startMonth; // Увеличиваем месяц на один
+    ++startMonth;  // Увеличиваем месяц на один
 
-    if (startMonth == 13) { // Если месяц стал больше 12
-      startMonth = 1; // Устанавливаем месяц в январь
-      ++startYear; // Увеличиваем год
+    if (startMonth == 13) {  // Если месяц стал больше 12
+      startMonth = 1;  // Устанавливаем месяц в январь
+      ++startYear;     // Увеличиваем год
     }
 
-    --counter; // Уменьшаем счетчик
+    --counter;  // Уменьшаем счетчик
   }
 
-  if (payPeriod == End) { // Если период выплаты - в конце срока
-    totalInterestPayment = mathHelper::Round(totalInterestPayment, 2); // Округляем общую сумму выплаты процентов до двух знаков после запятой
+  if (payPeriod == End) {  // Если период выплаты - в конце срока
+    totalInterestPayment = mathHelper::Round(
+        totalInterestPayment, 2);  // Округляем общую сумму выплаты процентов до
+                                   // двух знаков после запятой
 
-    if (_capitalization) { // Если проценты капитализируются
-      totalSum += totalInterestPayment; // Добавляем общую сумму выплаты процентов к общей сумме
+    if (_capitalization) {  // Если проценты капитализируются
+      totalSum += totalInterestPayment;  // Добавляем общую сумму выплаты
+                                         // процентов к общей сумме
     }
   }
 
-  totalTax = mathHelper::Round(totalInterestPayment * (_tax / 100), 2); // Рассчитываем общий налог на доход
-  interestAmount = totalInterestPayment; // Записываем общую сумму выплаты процентов
-  depositAmount = totalSum; // Записываем общую сумму вклада
-  taxAmount = totalTax; // Записываем общий налог на доход
-  _isCalc = true; // Устанавливаем флаг завершения расчетов
+  totalTax = mathHelper::Round(totalInterestPayment * (_tax / 100),
+                               2);  // Рассчитываем общий налог на доход
+  interestAmount =
+      totalInterestPayment;  // Записываем общую сумму выплаты процентов
+  depositAmount = totalSum;  // Записываем общую сумму вклада
+  taxAmount = totalTax;  // Записываем общий налог на доход
+  _isCalc = true;  // Устанавливаем флаг завершения расчетов
 }
 
 /**
@@ -313,4 +338,4 @@ void DepositModel::OperationsHandle(int year, int month, int day,
   }
 }
 
-} // namespace s21
+}  // namespace s21

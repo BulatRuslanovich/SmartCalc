@@ -22,8 +22,7 @@ class GraphView final : public QDialog,
   Q_OBJECT
 
  public:
-  explicit GraphView(IGraphController* controller,
-                     IGraphModelPublic* model,
+  explicit GraphView(IGraphController* controller, IGraphModelPublic* model,
                      QWidget* parent = nullptr);
 
   GraphView(const GraphView& other) = delete;
@@ -38,8 +37,7 @@ class GraphView final : public QDialog,
 
  private:
   void SetupButtons();
-  void GraphPlotConfig(double beginX, double endX, double beginY,
-                       double endY);
+  void GraphPlotConfig(double beginX, double endX, double beginY, double endY);
   void UpdateInputFieldsFromModel();
   void UpdateResultFromModel();
   void ResetResult();
@@ -64,7 +62,6 @@ class GraphView final : public QDialog,
   void DrawButtonHandle();
   void DefaultSettingsButtonHandle();
 };
-
 
 }  // namespace s21
 

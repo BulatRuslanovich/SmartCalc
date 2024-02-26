@@ -7,14 +7,13 @@
 #include <vector>
 
 #include "widgets/qcustomplot.h"
-//#include "../ui/_uigraph_view.h"
+// #include "../ui/_uigraph_view.h"
 #include "ViewHelpers.h"
-
 
 namespace s21 {
 
-GraphView::GraphView(IGraphController* controller,
-                     IGraphModelPublic* model, QWidget* parent)
+GraphView::GraphView(IGraphController* controller, IGraphModelPublic* model,
+                     QWidget* parent)
     : QDialog(parent),
       _ui(new Ui::GraphView),
       _controller(controller),
@@ -34,7 +33,7 @@ GraphView::~GraphView() {
 
 void GraphView::UpdateGraphWindow(const QString& mathExpression) {
   _controller->SetExpression(mathExpression);
-  
+
   if (!isVisible()) {
     move(0, 0);
     show();
@@ -96,7 +95,7 @@ void GraphView::UpdateInputFieldsFromModel() {
 
   _ui->xMinEdit->setText(ViewHelpers::DoubleToQStr(_beginX, 7));
   _ui->xMaxEdit->setText(ViewHelpers::DoubleToQStr(_endX, 7));
-  
+
   if (_model->GetYScaleAuto()) {
     _ui->yMinEdit->setText("");
     _ui->yMaxEdit->setText("");
@@ -107,8 +106,7 @@ void GraphView::UpdateInputFieldsFromModel() {
 }
 
 void GraphView::UpdateResultFromModel() {
-  const std::vector<std::pair<double, double>>& points =
-      _model->GetPoints();
+  const std::vector<std::pair<double, double>>& points = _model->GetPoints();
 
   QVector<double> xVec, yVec;
 

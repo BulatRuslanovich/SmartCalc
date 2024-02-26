@@ -17,5 +17,5 @@ class IObserverGraphError : public IObserverError {
  public:
   virtual ~IObserverGraphError() = default;
 };
-}
+}  // namespace s21
 #endif  // SMARTCALC_IOBSERVERGRAPH_H

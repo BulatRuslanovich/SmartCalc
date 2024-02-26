@@ -3,6 +3,7 @@
 //
 
 #include "token.h"
+
 #include <limits>
 
 namespace s21 {
@@ -111,4 +112,4 @@ bool Token::IsBinary() const noexcept {
          type == mulToken || type == powToken || type == modToken;
 }
 
-}
+}  // namespace s21

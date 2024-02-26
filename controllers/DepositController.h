@@ -19,7 +19,7 @@ class DepositController final : public IDepositController {
   DepositController& operator=(const DepositController& other) = delete;
   DepositController& operator=(DepositController&& other) = delete;
   ~DepositController() override = default;
-  
+
   void SetDepositSum(double sum) override;
   void SetDepositPeriod(int months) override;
   void SetDepositInterest(double interest) override;
@@ -28,10 +28,10 @@ class DepositController final : public IDepositController {
   void SetDepositCapitalization(bool capitalization) override;
   void SetDepositDateStart(int year, int month, int day) override;
   void AddDepositOperationReplenishment(int year, int month, int day,
-                                                double amount) override;
+                                        double amount) override;
   void AddDepositOperationWithdrawal(int year, int month, int day,
-                                             double amount) override;
-  
+                                     double amount) override;
+
   void ClearDepositOperationsList() override;
   void CalculateDeposit() override;
 

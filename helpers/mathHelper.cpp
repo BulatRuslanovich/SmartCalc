@@ -3,8 +3,8 @@
 //
 
 #include "mathHelper.h"
-#include <cmath>
 
+#include <cmath>
 
 namespace s21::mathHelpers {
 
@@ -48,7 +48,8 @@ std::string RemoveTrailingZeros(const std::string& input) {
  * \brief Преобразует число с плавающей запятой в строку с указанной точностью.
  * \param value Число с плавающей запятой, которое требуется преобразовать.
  * \param precision Количество десятичных знаков, которое должно быть в строке.
- * \return Строковое представление числа с плавающей запятой с указанной точностью.
+ * \return Строковое представление числа с плавающей запятой с указанной
+ * точностью.
  */
 std::string doubleToString(double value, int precision) {
   double tmp = Round(value, precision);
@@ -67,4 +68,4 @@ int GetDaysCount(int month, int year) {
          ((4 / month & 2) >> (!(year % 4) - !(year % 100) + !(year % 400)));
 }
 
-}
+}  // namespace s21::mathHelpers

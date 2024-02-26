@@ -19,11 +19,14 @@ QT_END_NAMESPACE
 
 namespace s21 {
 
-class CreditView final : public QWidget, public IObserverCreditUpdate, public IObserverCreditError {
+class CreditView final : public QWidget,
+                         public IObserverCreditUpdate,
+                         public IObserverCreditError {
   Q_OBJECT
 
  public:
-  explicit CreditView(ICreditController* controller, ICreditModelPublic* model, QWidget* parent = nullptr);
+  explicit CreditView(ICreditController* controller, ICreditModelPublic* model,
+                      QWidget* parent = nullptr);
   CreditView(const CreditView& other) = delete;
   CreditView(CreditView&& other) = delete;
   CreditView& operator=(const CreditView& other) = delete;

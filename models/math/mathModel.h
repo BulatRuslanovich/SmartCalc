@@ -5,8 +5,8 @@
 #ifndef SMARTCALCV2_MATHMODEL_H
 #define SMARTCALCV2_MATHMODEL_H
 #include <list>
-#include <string>
 #include <stack>
+#include <string>
 
 #include "../calcException.h"
 #include "tokenHandle.h"
@@ -28,7 +28,7 @@ class MathModel final {
   ~MathModel() = default;
 
   void setExpression(const std::string& newExpression);
-  void setX(double  newX) {x = newX;};
+  void setX(double newX) { x = newX; };
   void ExpressionAddString(const std::string& str);
   void ExpressionDeleteEnd();
 
@@ -47,8 +47,10 @@ class MathModel final {
   void ResetModelResults() noexcept;
   double CalcX(double x = 0);
   double CalcUnaryOp(double value, TokenType type) const noexcept;
-  double CalcBinaryOp(double value1, double value2, TokenType type) const noexcept;
-  static void AppendStrWithPopStack(std::string& res, std::stack<Token>& stack, std::string& str);
+  double CalcBinaryOp(double value1, double value2,
+                      TokenType type) const noexcept;
+  static void AppendStrWithPopStack(std::string& res, std::stack<Token>& stack,
+                                    std::string& str);
   bool needInit;
   bool isCalc;
   double x;

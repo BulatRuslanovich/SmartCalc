@@ -8,13 +8,11 @@
 #include <QLayout>
 #include <QString>
 
-
 namespace s21::ViewHelpers {
-  void SetupDateEdit(QDateEdit *dateEdit);
-  QLayout *FindParentLayout(QWidget *widget, QLayout *parent);
-  QLayout *FindParentLayout(QWidget *widget);
-  QString DoubleToQStr(double num, double precision);
-}
-
+void SetupDateEdit(QDateEdit *dateEdit);
+QLayout *FindParentLayout(QWidget *widget, QLayout *parent);
+QLayout *FindParentLayout(QWidget *widget);
+QString DoubleToQStr(double num, double precision);
+}  // namespace s21::ViewHelpers
 
 #endif  // SMARTCALCV2_VIEWHELPERS_H

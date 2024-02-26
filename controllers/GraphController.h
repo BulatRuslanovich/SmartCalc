@@ -21,7 +21,7 @@ class GraphController final : public IGraphController {
   GraphController& operator=(GraphController&& other) = delete;
   ~GraphController() override = default;
 
-  void SetExpression(const QString &str) override;
+  void SetExpression(const QString& str) override;
   void SetBeginX(double newX) override;
   void SetEndX(double newX) override;
   void SetBeginY(double newY) override;

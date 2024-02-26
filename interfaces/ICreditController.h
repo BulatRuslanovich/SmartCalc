@@ -10,15 +10,15 @@
 namespace s21 {
 
 class ICreditController {
-   public:
-    virtual ~ICreditController() = default;
+ public:
+  virtual ~ICreditController() = default;
 
-    virtual void SetCreditSum(double sum) = 0;
-    virtual void SetCreditMonths(int months) = 0;
-    virtual void SetCreditInterest(double interest) = 0;
-    virtual void SetCreditType(int type) = 0;
+  virtual void SetCreditSum(double sum) = 0;
+  virtual void SetCreditMonths(int months) = 0;
+  virtual void SetCreditInterest(double interest) = 0;
+  virtual void SetCreditType(int type) = 0;
 
-    virtual void CalculateCredit() = 0;
+  virtual void CalculateCredit() = 0;
 };
 }  // namespace s21
 

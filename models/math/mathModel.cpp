@@ -3,6 +3,7 @@
 //
 
 #include "mathModel.h"
+
 #include <cmath>
 #include <limits>
 #include <list>
@@ -21,7 +22,13 @@ MathModel::MathModel() : MathModel("") {}
  * \param str Строка с математическим выражением.
  */
 MathModel::MathModel(const std::string& str)
-    : needInit(true), isCalc(false), x(0.0), expression(str), rpnExpression(""), tokensList({}), mathResult(std::numeric_limits<double>::quiet_NaN()) {}
+    : needInit(true),
+      isCalc(false),
+      x(0.0),
+      expression(str),
+      rpnExpression(""),
+      tokensList({}),
+      mathResult(std::numeric_limits<double>::quiet_NaN()) {}
 
 /**
  * \brief Устанавливает новое математическое выражение.
@@ -38,8 +45,8 @@ void MathModel::setExpression(const std::string& newExpression) {
 /**
  * \brief Добавляет строку к текущему математическому выражению.
  * \param str Строка, которая добавляется к текущему выражению.
- * \throw InputTooLongException Если длина результата превышает максимально допустимый размер.
- * \throw InputIncorrectException Если ввод некорректен.
+ * \throw InputTooLongException Если длина результата превышает максимально
+ * допустимый размер. \throw InputIncorrectException Если ввод некорректен.
  * \throw WrongOperatorException Если произошла ошибка оператора.
  */
 void MathModel::ExpressionAddString(const std::string& str) {
@@ -50,7 +57,7 @@ void MathModel::ExpressionAddString(const std::string& str) {
   }
 
   try {
-    if (str == "." ) {
+    if (str == ".") {
       res = tokenHandle::AddPointToStr(res);
     } else {
       auto list = tokenHandle::ParseTokens(str);
@@ -73,7 +80,8 @@ void MathModel::ExpressionAddString(const std::string& str) {
 }
 
 /**
- * \brief Удаляет последний токен или символ из текущего математического выражения.
+ * \brief Удаляет последний токен или символ из текущего математического
+ * выражения.
  */
 void MathModel::ExpressionDeleteEnd() {
   std::string res = getExpression();
@@ -91,7 +99,8 @@ void MathModel::ExpressionDeleteEnd() {
 }
 
 /**
- * \brief Возвращает обратную польскую запись текущего математического выражения.
+ * \brief Возвращает обратную польскую запись текущего математического
+ * выражения.
  */
 std::string MathModel::getRpnExpression() {
   if (needInit) {
@@ -195,7 +204,8 @@ void MathModel::CalcRpn() {
 
         Token lastToken = tokenStack.top();
 
-        if ((lastToken.left2right && lastToken.priority >= check.priority) || (!lastToken.left2right && lastToken.priority > check.priority)) {
+        if ((lastToken.left2right && lastToken.priority >= check.priority) ||
+            (!lastToken.left2right && lastToken.priority > check.priority)) {
           AppendStrWithPopStack(res, tokenStack, lastToken.str);
         } else {
           break;
@@ -224,21 +234,25 @@ void MathModel::CalcRpn() {
 }
 
 /**
- * \brief Добавляет строку в результирующее выражение и извлекает токен из стека.
+ * \brief Добавляет строку в результирующее выражение и извлекает токен из
+ * стека.
  *
  * \param[in,out] res Результирующее выражение, в которое добавляется строка.
  * \param[in,out] stack Стек токенов.
  * \param[in] str Строка, которая добавляется в результирующее выражение.
  */
-void MathModel::AppendStrWithPopStack(std::string& res, std::stack<Token>& stack, std::string& str) { // TODO: может поломаться
+void MathModel::AppendStrWithPopStack(
+    std::string& res, std::stack<Token>& stack,
+    std::string& str) {  // TODO: может поломаться
   res.append(str);
   res.append(" ");
   stack.pop();
 }
 
 /**
- * \brief Инициализирует вычислительную машину путем разбора выражения в обратной польской нотации (ОПН).
- * \throws InputIncorrectException если во входной строке встречаются неизвестные символы.
+ * \brief Инициализирует вычислительную машину путем разбора выражения в
+ * обратной польской нотации (ОПН). \throws InputIncorrectException если во
+ * входной строке встречаются неизвестные символы.
  */
 void MathModel::InitCalcMachine() {
   try {
@@ -260,7 +274,8 @@ void MathModel::ResetModelResults() noexcept {
  *
  * @param xValue Значение переменной x, для которого вычисляется выражение.
  * @return Результат вычисления выражения.
- * @throw InputIncorrectException Если происходит ошибка в процессе вычисления выражения.
+ * @throw InputIncorrectException Если происходит ошибка в процессе вычисления
+ * выражения.
  */
 double MathModel::CalcX(double xValue) {
   if (needInit) {
@@ -336,7 +351,7 @@ double MathModel::CalcX(double xValue) {
  */
 double MathModel::CalcUnaryOp(double value, TokenType type) const noexcept {
   double result = 0.0;
-  
+
   switch (type) {
     case unMinusToken:
       result = 0 - value;
@@ -386,7 +401,7 @@ double MathModel::CalcUnaryOp(double value, TokenType type) const noexcept {
 double MathModel::CalcBinaryOp(double value1, double value2,
                                TokenType type) const noexcept {
   double result = 0.0;
-  
+
   switch (type) {
     case addToken:
       result = value1 + value2;

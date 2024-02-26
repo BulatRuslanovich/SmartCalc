@@ -28,7 +28,9 @@ class DepositModel {
   };
 
   enum PayPeriodDepositType {
-    Day, Month, End,
+    Day,
+    Month,
+    End,
   };
 
   // Минимальная сумма депозита
@@ -74,7 +76,6 @@ class DepositModel {
     _isCalc = false;
   }
 
-
   void set_tax(double newTax) noexcept {
     _tax = newTax;
     _isCalc = false;
@@ -96,18 +97,16 @@ class DepositModel {
   }
 
   void AddOperation(int year, int month, int day, double amount) {
-    operationsList.emplace_back(year, month, day, amount); // пока не знаю, но тут могут быть проблемы
+    operationsList.emplace_back(
+        year, month, day, amount);  // пока не знаю, но тут могут быть проблемы
     _isCalc = false;
   }
-
 
   double getSum() const noexcept { return _sum; }
   int getMonths() const noexcept { return _months; }
   double getInterest() const noexcept { return _interest; }
   double getTax() const noexcept { return _tax; }
-  PayPeriodDepositType getPayPeriod() const noexcept {
-    return payPeriod;
-  }
+  PayPeriodDepositType getPayPeriod() const noexcept { return payPeriod; }
 
   bool getCapitalization() const noexcept { return _capitalization; }
   int getYearStart() const noexcept { return yearStart; }

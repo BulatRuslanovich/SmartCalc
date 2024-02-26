@@ -9,16 +9,16 @@
 
 namespace s21 {
 class IMathController {
-   public:
-    virtual ~IMathController() = default;
+ public:
+  virtual ~IMathController() = default;
 
-    virtual void SetExpression(const QString& str) = 0;
-    virtual void SetX(double x) = 0;
-    virtual void ExpressionAdd(const char* add) = 0;
-    virtual void ExpressionEraseEnd() = 0;
+  virtual void SetExpression(const QString& str) = 0;
+  virtual void SetX(double x) = 0;
+  virtual void ExpressionAdd(const char* add) = 0;
+  virtual void ExpressionEraseEnd() = 0;
 
-    virtual void CalculateX() = 0;
+  virtual void CalculateX() = 0;
 };
-}
+}  // namespace s21
 
 #endif  // SMARTCALC_IMATHCONTROLLER_H

@@ -17,5 +17,5 @@ class IObserverDepositError : public IObserverError {
  public:
   virtual ~IObserverDepositError() = default;
 };
-}
+}  // namespace s21
 #endif  // SMARTCALC_IOBSERVERDEPOSIT_H

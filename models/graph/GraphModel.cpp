@@ -23,29 +23,34 @@ namespace s21 {
  * - yScaleAuto - автоматическое масштабирование оси Y (true по умолчанию);
  * - _points - пустой вектор точек графика.
  */
-GraphModel::GraphModel() : mathModel(new MathModel), xBegin(-100), xEnd(100), yBegin(0), yEnd(0), yScaleAuto(true), _points({}){}
+GraphModel::GraphModel()
+    : mathModel(new MathModel),
+      xBegin(-100),
+      xEnd(100),
+      yBegin(0),
+      yEnd(0),
+      yScaleAuto(true),
+      _points({}) {}
 /**
  * @brief Деструктор класса GraphModel.
  *
  * Освобождает ресурсы, занимаемые моделью графика.
  * Удаляет объект MathModel, на который указывает mathModel.
  */
-GraphModel::~GraphModel() {delete mathModel;}
+GraphModel::~GraphModel() { delete mathModel; }
 
 /**
  * @brief Сбрасывает результаты модели графика.
  *
  * Очищает вектор точек `_points`, удаляя все сохраненные точки графика.
  */
-void GraphModel::ResetModelResults() noexcept {
-  _points.clear();
-}
+void GraphModel::ResetModelResults() noexcept { _points.clear(); }
 
 /**
  * @brief Нормализует диапазон значений по оси X.
  *
- * Если начальное значение оси X (`xBegin`) больше конечного значения оси X (`xEnd`),
- * метод меняет их местами с использованием функции `std::swap`.
+ * Если начальное значение оси X (`xBegin`) больше конечного значения оси X
+ * (`xEnd`), метод меняет их местами с использованием функции `std::swap`.
  */
 void GraphModel::NormalizeXRange() noexcept {
   if (xBegin > xEnd) {
@@ -56,8 +61,8 @@ void GraphModel::NormalizeXRange() noexcept {
 /**
  * @brief Нормализует диапазон значений по оси Y.
  *
- * Если начальное значение оси Y (`yBegin`) больше конечного значения оси Y (`yEnd`),
- * метод меняет их местами с использованием функции `std::swap`.
+ * Если начальное значение оси Y (`yBegin`) больше конечного значения оси Y
+ * (`yEnd`), метод меняет их местами с использованием функции `std::swap`.
  */
 void GraphModel::NormalizeYRange() noexcept {
   if (yBegin > yEnd) {
@@ -69,7 +74,8 @@ void GraphModel::NormalizeYRange() noexcept {
  * @brief Проверяет данные модели графика.
  *
  * @throw WrongXGraphException если диапазон значений по оси X некорректен.
- * @throw WrongYGraphException если диапазон значений по оси Y некорректен и масштаб оси Y не автоматический.
+ * @throw WrongYGraphException если диапазон значений по оси Y некорректен и
+ * масштаб оси Y не автоматический.
  */
 void GraphModel::CheckModelData() const {
   if (xBegin == xEnd || xBegin < _minX || xEnd > _maxX) {
@@ -97,22 +103,29 @@ void GraphModel::CalculateHandle() {
  *
  * @param last Предыдущая точка.
  * @param current Текущая точка.
- * @return true если текущая точка является разрывом функции, в противном случае - false.
+ * @return true если текущая точка является разрывом функции, в противном случае
+ * - false.
  * @note Этот метод не выбрасывает исключений (noexcept).
  */
 bool GraphModel::IsFunctionBreakPoint(double last,
                                       double current) const noexcept {
-  return (std::isnan(last) && !std::isnan(current)) || (std::isnan(current) && !std::isnan(last)) || ((last < 0 && current > 0) || (last > 0 && current < 0)) && (std::abs(last - current) > 40) || (!std::isinf(last / current) && std::abs(last / current) > 1E20);
+  return (std::isnan(last) && !std::isnan(current)) ||
+         (std::isnan(current) && !std::isnan(last)) ||
+         ((last < 0 && current > 0) || (last > 0 && current < 0)) &&
+             (std::abs(last - current) > 40) ||
+         (!std::isinf(last / current) && std::abs(last / current) > 1E20);
 }
 
 /**
  * @brief Устанавливает диапазон значений по оси Y.
  *
- * Если автоматическое масштабирование оси Y (`yScaleAuto` равно true), метод обновляет
- * начальное и конечное значения по оси Y (`yBegin` и `yEnd` соответственно) на основе переданных
- * значений `yMin` и `yMax`. Если `yMin` и `yMax` равны 0.0, метод устанавливает значения -5.0 и 5.0 соответственно.
- * Если `yMin` меньше -1E6, то `yMin` устанавливается равным -1E6. Если `yMax` больше 1E6, то `yMax` устанавливается равным 1E6.
- * Все значения корректируются на 5% вверх, чтобы обеспечить небольшой зазор.
+ * Если автоматическое масштабирование оси Y (`yScaleAuto` равно true), метод
+ * обновляет начальное и конечное значения по оси Y (`yBegin` и `yEnd`
+ * соответственно) на основе переданных значений `yMin` и `yMax`. Если `yMin` и
+ * `yMax` равны 0.0, метод устанавливает значения -5.0 и 5.0 соответственно.
+ * Если `yMin` меньше -1E6, то `yMin` устанавливается равным -1E6. Если `yMax`
+ * больше 1E6, то `yMax` устанавливается равным 1E6. Все значения корректируются
+ * на 5% вверх, чтобы обеспечить небольшой зазор.
  *
  * @param yMin Минимальное значение по оси Y.
  * @param yMax Максимальное значение по оси Y.
@@ -151,11 +164,16 @@ void GraphModel::SetYRange(double yMin, double yMax) noexcept {
  *
  * @param _xBegin Начальное значение диапазона по оси X.
  * @param _xEnd Конечное значение диапазона по оси X.
- * @param numPoints Количество точек, которые необходимо вычислить в заданном диапазоне.
- * @param yMin Ссылка на переменную, в которую будет сохранено минимальное значение по оси Y.
- * @param yMax Ссылка на переменную, в которую будет сохранено максимальное значение по оси Y.
- * @param numOfCalcPoints Количество дополнительных вычислений точек, если обнаружен разрыв функции.
- * @note Метод корректирует значения координат для обеспечения точности вычислений.
+ * @param numPoints Количество точек, которые необходимо вычислить в заданном
+ * диапазоне.
+ * @param yMin Ссылка на переменную, в которую будет сохранено минимальное
+ * значение по оси Y.
+ * @param yMax Ссылка на переменную, в которую будет сохранено максимальное
+ * значение по оси Y.
+ * @param numOfCalcPoints Количество дополнительных вычислений точек, если
+ * обнаружен разрыв функции.
+ * @note Метод корректирует значения координат для обеспечения точности
+ * вычислений.
  */
 void GraphModel::CalculatePoints(double _xBegin, double _xEnd, double numPoints,
                                  double& yMin, double& yMax,
@@ -187,13 +205,17 @@ void GraphModel::CalculatePoints(double _xBegin, double _xEnd, double numPoints,
 
     if (!firstIteration && IsFunctionBreakPoint(yLastVal, yValue)) {
       if (numOfCalcPoints > 0) {
-        CalculatePoints(xLastVal, xValue, numPointsPre, yMin, yMax, numOfCalcPoints - 1);
+        CalculatePoints(xLastVal, xValue, numPointsPre, yMin, yMax,
+                        numOfCalcPoints - 1);
       } else {
         (*(--_points.end())).second = std::numeric_limits<double>::quiet_NaN();
       }
     }
 
-    _points.emplace_back(xValue, yValue); // должно быть лучше points.push_back(std::make_pair(xValue, yValue));, тк  не происходит двойное копирвание
+    _points.emplace_back(
+        xValue,
+        yValue);  // должно быть лучше points.push_back(std::make_pair(xValue,
+                  // yValue));, тк  не происходит двойное копирвание
     --points;
 
     if (yValue < yMin && !std::isnan(yValue) && !std::isinf(yValue)) {
@@ -213,14 +235,16 @@ void GraphModel::CalculatePoints(double _xBegin, double _xEnd, double numPoints,
 /**
  * @brief Вычисляет график.
  *
- * Метод `CalculateGraph()` осуществляет последовательность шагов, необходимых для вычисления графика:
+ * Метод `CalculateGraph()` осуществляет последовательность шагов, необходимых
+ * для вычисления графика:
  * 1. Сброс результатов модели с помощью `ResetModelResults()`.
  * 2. Нормализация диапазона значений по оси X с помощью `NormalizeXRange()`.
  * 3. Нормализация диапазона значений по оси Y с помощью `NormalizeYRange()`.
  * 4. Проверка корректности данных модели с помощью `CheckModelData()`.
  * 5. Вычисление точек графика с помощью `CalculateHandle()`.
  *
- * Последовательность этих шагов необходима для подготовки данных и корректного расчета графика.
+ * Последовательность этих шагов необходима для подготовки данных и корректного
+ * расчета графика.
  */
 void GraphModel::CalculateGraph() {
   ResetModelResults();

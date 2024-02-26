@@ -17,5 +17,5 @@ class IObserverCreditError : public IObserverError {
  public:
   virtual ~IObserverCreditError() = default;
 };
-}
+}  // namespace s21
 #endif  // SMARTCALC_IOBSERVERCREDIT_H

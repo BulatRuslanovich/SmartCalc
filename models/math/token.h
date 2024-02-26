@@ -39,13 +39,12 @@ enum TokenType {
 struct Token final {
  public:
   Token();
-  Token(TokenType type, const std::string &str, int priority,
-         bool left2right);
+  Token(TokenType type, const std::string &str, int priority, bool left2right);
   Token(TokenType type, const std::string &str, int priority, bool left2right,
-         double value);
+        double value);
 
   static Token MakeToken(TokenType type, double value = 0,
-                           const std::string &string = "");
+                         const std::string &string = "");
 
   bool IsUnary() const noexcept;
   bool IsBinary() const noexcept;
@@ -64,6 +63,6 @@ struct Token final {
   static constexpr double E = 2.71828182845904523536028747135266250;
 };
 
-}
+}  // namespace s21
 
 #endif  // SMARTCALCV2_TOKEN_H
