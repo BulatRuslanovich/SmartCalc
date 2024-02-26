@@ -68,6 +68,15 @@ set(PROJECT_SOURCES
         controllers/CreditController.h
         controllers/DepositController.cpp
         controllers/DepositController.h
+        views/ViewHelpers.cpp
+        views/ViewHelpers.h
+        views/CreditView.cpp
+        views/CreditView.h
+        views/GraphView.cpp
+        views/GraphView.h
+
+        views/widgets/qcustomplot.cc
+        views/widgets/qcustomplot.h
 
 
 )

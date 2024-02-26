@@ -5,7 +5,7 @@
 #include <cctype>
 #include "stringHelper.h"
 
-namespace s21 {
+namespace s21::stringHelper {
 /**
  * \brief Удаляет все ведущие пробельные символы из строки.
  * \param str Ссылка на строку типа std::string_view, из которой нужно удалить пробелы.

@@ -7,11 +7,8 @@
 
 #include <string_view>
 
-namespace s21 {
-namespace stringHelper {
+namespace s21::stringHelper {
 void TrimLeft(std::string_view& str) noexcept;
 }
-
-}  // namespace s21
 
 #endif  // SMARTCALC_STRINGHELPER_H

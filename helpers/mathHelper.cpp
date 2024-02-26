@@ -5,8 +5,8 @@
 #include "mathHelper.h"
 #include <cmath>
 
-namespace s21 {
-namespace mathHelpers {
+
+namespace s21::mathHelpers {
 
 /**
  * \brief Округляет число с плавающей запятой до заданной точности.
@@ -67,7 +67,4 @@ int GetDaysCount(int month, int year) {
          ((4 / month & 2) >> (!(year % 4) - !(year % 100) + !(year % 400)));
 }
 
-
-
 }
-}  // namespace s21
