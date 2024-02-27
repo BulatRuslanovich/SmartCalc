@@ -77,6 +77,12 @@ set(PROJECT_SOURCES
 
         views/widgets/qcustomplot.cc
         views/widgets/qcustomplot.h
+        views/MathView.cpp
+        views/MathView.h
+        views/DepositView.cpp
+        views/DepositView.h
+        views/MainView.cpp
+        views/MainView.h
 
 
 )
