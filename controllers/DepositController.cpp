@@ -24,7 +24,7 @@ void DepositController::SetDepositTax(double tax) {
 }
 
 void DepositController::SetDepositPeriodicityType(int type) {
-  _model->SetDepositPeriodicityType(static_cast<DepositType>(type));
+  _model->SetDepositPeriodicityType(static_cast<IDepositType>(type));
 }
 
 void DepositController::SetDepositCapitalization(bool capitalization) {

@@ -6,7 +6,9 @@
 
 #include <cmath>
 
-namespace s21::mathHelpers {
+namespace s21 {
+
+namespace mathHelper {
 
 /**
  * \brief Округляет число с плавающей запятой до заданной точности.
@@ -69,3 +71,4 @@ int GetDaysCount(int month, int year) {
 }
 
 }  // namespace s21::mathHelpers
+}

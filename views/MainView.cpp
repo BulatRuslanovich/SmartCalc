@@ -3,27 +3,27 @@
 //
 
 #include "MainView.h"
-
+#include "../ui/ui_MainView.h"
 namespace s21 {
 
 MainView::MainView(s21::MathView *mathView, s21::CreditView *creditView,
                    s21::DepositView *depositView, QWidget *parent)
-    : QMainWindow(parent), _ui(new Ui::MathView) {
+    : QMainWindow(parent), _ui(new Ui::MainView) {
   _ui->setupUi(this);
 
   if (mathView) {
     mathView->setObjectName(QString::fromUtf8("MathView"));
-    _ui->verticalLayout_6->addWidget(mathView);
+    _ui->MainCalcWindow->addWidget(mathView);
   }
 
   if (creditView) {
     creditView->setObjectName(QString::fromUtf8("CreditView"));
-    _ui->verticalLayout_7->addWidget(creditView);
+    _ui->CreditCalcWindow->addWidget(creditView);
   }
 
   if (depositView) {
     mathView->setObjectName(QString::fromUtf8("DepositView"));
-    _ui->verticalLayout_8->addWidget(depositView);
+    _ui->DepositCalcWindow->addWidget(depositView);
   }
 }
 

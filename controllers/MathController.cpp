@@ -13,6 +13,6 @@ void MathController::SetX(double x) { _model->SetX(x); }
 void MathController::ExpressionAdd(const char *add) {
   _model->ExpressionAdd(add);
 }
-void MathController::ExpressionEraseEnd() { _model->ExpressionEraseEnd(); }
+void MathController::ExpressionEraseEnd() { _model->ExpressionDeleteEnd(); }
 void MathController::CalculateX() { _model->CalculateX(); }
 }  // namespace s21

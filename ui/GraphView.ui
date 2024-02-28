@@ -15,7 +15,7 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_4">
    <item>
-    <widget class="QCustomPlot" name="graph_plot" native="true">
+    <widget class="QCustomPlot" name="graphPlot" native="true">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
        <horstretch>0</horstretch>
@@ -44,7 +44,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="y_min_edit"/>
+          <widget class="QLineEdit" name="yMinEdit"/>
          </item>
         </layout>
        </item>
@@ -61,7 +61,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="x_min_edit">
+          <widget class="QLineEdit" name="xMinEdit">
            <property name="text">
             <string>-100</string>
            </property>
@@ -86,7 +86,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="y_max_edit">
+          <widget class="QLineEdit" name="yMaxEdit">
            <property name="text">
             <string/>
            </property>
@@ -110,7 +110,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="x_max_edit">
+          <widget class="QLineEdit" name="xMaxEdit">
            <property name="text">
             <string>100</string>
            </property>
@@ -141,14 +141,14 @@
           </spacer>
          </item>
          <item>
-          <widget class="QPushButton" name="draw_button">
+          <widget class="QPushButton" name="drawButton">
            <property name="text">
             <string>Применить настройки</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="default_settings_button">
+          <widget class="QPushButton" name="defaultSettingsButton">
            <property name="text">
             <string>По умолчанию</string>
            </property>
@@ -172,7 +172,7 @@
           </spacer>
          </item>
          <item>
-          <widget class="QPushButton" name="back_button">
+          <widget class="QPushButton" name="backButton">
            <property name="text">
             <string>Назад</string>
            </property>
@@ -190,7 +190,7 @@
   <customwidget>
    <class>QCustomPlot</class>
    <extends>QWidget</extends>
-   <header>view/widgets/qcustomplot.h</header>
+   <header>views/widgets/qcustomplot.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

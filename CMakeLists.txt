@@ -31,8 +31,8 @@ set(PROJECT_SOURCES
 
         helpers/annunciator.h
         helpers/annunciator.cpp
-        helpers/mathHelper.h
         helpers/mathHelper.cpp
+        helpers/mathHelper.h
         helpers/stringHelper.h
         helpers/stringHelper.cpp
 
@@ -85,8 +85,9 @@ set(PROJECT_SOURCES
         views/MainView.h
         MasterModel.cpp
         MasterModel.h
-
-
+        CalcAppContainer.cpp
+        CalcAppContainer.h
+        main.cpp
 )
 
 

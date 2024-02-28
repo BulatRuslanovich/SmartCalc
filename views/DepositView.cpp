@@ -7,7 +7,7 @@
 #include <QDateEdit>
 #include <QMessageBox>
 
-//#include "../ui/_uideposit_view.h"
+#include "../ui/ui_DepositView.h"
 #include "ViewHelpers.h"
 
 namespace s21 {
@@ -20,8 +20,8 @@ DepositView::DepositView(IDepositController *controller,
       _model(model) {
 
   _ui->setupUi(this);
-  ViewHelpers::SetupDateEdit(_ui->deposit_start_date_edit);
-  _ui->deposit_types_combo->setCurrentIndex(1);
+  ViewHelpers::SetupDateEdit(_ui->depositStartDateEdit);
+  _ui->depositTypesCombo->setCurrentIndex(1);
   SetupDepositButtons();
   _model->AddObserver(static_cast<IObserverDepositUpdate *>(this));
   _model->AddObserver(static_cast<IObserverDepositError *>(this));
@@ -37,96 +37,96 @@ void DepositView::Update() {
 
 void DepositView::Error(const std::pair<std::string, std::string> &error) {
   UpdateResultFromModel();
-  auto error_text = QString::fromStdString(error.second);
+  auto errorText = QString::fromStdString(error.second);
   if (error.first == "sum") {
-    SetDepositSumError(error_text);
+    SetDepositSumError(errorText);
   } else if (error.first == "months") {
-    SetDepositMonthsError(error_text);
+    SetDepositMonthsError(errorText);
   } else if (error.first == "interest") {
-    SetDepositInterestError(error_text);
+    SetDepositInterestError(errorText);
   } else if (error.first == "tax") {
-    SetDepositTaxError(error_text);
+    SetDepositTaxError(errorText);
   } else if (error.first == "date_start") {
-    SetDepositDateStartError(error_text);
+    SetDepositDateStartError(errorText);
   } else if (error.first == "replenishment_date") {
-    SetDepositAddMoneyError(error_text);
+    SetDepositAddMoneyError(errorText);
   } else if (error.first == "replenishment_sum") {
-    SetDepositAddMoneyError(error_text);
+    SetDepositAddMoneyError(errorText);
   } else if (error.first == "withdrawal_date") {
-    SetDepositSubMoneyError(error_text);
+    SetDepositSubMoneyError(errorText);
   } else if (error.first == "withdrawal_sum") {
-    SetDepositSubMoneyError(error_text);
+    SetDepositSubMoneyError(errorText);
   } else {
-    QMessageBox::critical(0, "Ошибка", error_text);
+    QMessageBox::critical(0, "Ошибка", errorText);
   }
 }
 
 void DepositView::SetupDepositButtons() {
   // Слот для обработки "Рассчитать" в депозитном калькуляторе
-  connect(_ui->deposit_calculate_button, SIGNAL(clicked()), this,
+  connect(_ui->depositCalcButton, SIGNAL(clicked()), this,
           SLOT(HandleDepositButton()));
   // Слоты для добавления и удаления строк в пополнениях/снятиях депозитного
   // калькулятора
   connect(_ui->addAddingButton, SIGNAL(clicked()), this,
           SLOT(AddOperationReplenishment()));
-  connect(_ui->AddSubingButton, SIGNAL(clicked()), this,
+  connect(_ui->addSubingButton, SIGNAL(clicked()), this,
           SLOT(AddOperationWithdrawal()));
   // Слоты для обработки изменений в текстовых полях депозитного калькулятора
-  connect(_ui->deposit_sum_edit, SIGNAL(textChanged(QString)), this,
+  connect(_ui->depositSumEdit, SIGNAL(textChanged(QString)), this,
           SLOT(HandleDepositSumChanged()));
-  connect(_ui->deposit_months_edit, SIGNAL(textChanged(QString)), this,
+  connect(_ui->depositMonthEdit, SIGNAL(textChanged(QString)), this,
           SLOT(HandleDepositMonthsChanged()));
-  connect(_ui->deposit_interest_edit, SIGNAL(textChanged(QString)), this,
+  connect(_ui->depositInterestEdit, SIGNAL(textChanged(QString)), this,
           SLOT(HandleDepositInterestChanged()));
-  connect(_ui->deposit_tax_edit, SIGNAL(textChanged(QString)), this,
+  connect(_ui->depositTaxEdit, SIGNAL(textChanged(QString)), this,
           SLOT(HandleDepositTaxChanged()));
-  connect(_ui->deposit_start_date_edit, SIGNAL(dateChanged(const QDate)), this,
+  connect(_ui->depositStartDateEdit, SIGNAL(dateChanged(const QDate)), this,
           SLOT(HandleDepositDateStartChanged()));
 }
 
 void DepositView::UpdateInputFieldsFromModel() {
   // Обновляем данные для расчета по данным модели
-  _ui->deposit_sum_edit->setText(
-      ViewHelpers::DoubleToQStr(_model->GetSum(), 2));
+  _ui->depositSumEdit->setText(
+      ViewHelpers::DoubleToQStr(_model->GetDepositSum(), 2));
 
-  int months = _model->GetMonths();
-  if (_ui->deposit_period_box->currentIndex() == 1) {
+  int months = _model->GetDepositMonths();
+  if (_ui->depositPeriodBox->currentIndex() == 1) {
     months = months / 12;
   }
 
-  _ui->deposit_months_edit->setText(QString::number(months));
-  _ui->deposit_interest_edit->setText(ViewHelpers::DoubleToQStr(_model->GetInterest(), 2));
+  _ui->depositMonthEdit->setText(QString::number(months));
+  _ui->depositInterestEdit->setText(ViewHelpers::DoubleToQStr(_model->GetDepositInterest(), 2));
 
-  _ui->deposit_tax_edit->setText(ViewHelpers::DoubleToQStr(_model->GetTax(), 2));
+  _ui->depositTaxEdit->setText(ViewHelpers::DoubleToQStr(_model->GetTax(), 2));
  
 
   bool capitalization = _model->GetDepositCapitalizationType();
 
   if (capitalization) {
-    _ui->deposit_capitalization_check_box->setChecked(true);
+    _ui->depositCapitalizationCheckBox->setChecked(true);
   } else {
-    _ui->deposit_capitalization_check_box->setChecked(false);
+    _ui->depositCapitalizationCheckBox->setChecked(false);
   }
 
-  DepositType type =_model->GetDepositType();
+  IDepositType type =_model->GetDepositType();
 
   if (type == Day) {
-    _ui->deposit_types_combo->setCurrentIndex(0);
+    _ui->depositTypesCombo->setCurrentIndex(0);
   } else if (type == Month) {
-    _ui->deposit_types_combo->setCurrentIndex(1);
+    _ui->depositTypesCombo->setCurrentIndex(1);
   } else {
-    _ui->deposit_types_combo->setCurrentIndex(2);
+    _ui->depositTypesCombo->setCurrentIndex(2);
   }
 }
 
 void DepositView::UpdateResultFromModel() {
   // Обновляем результаты расчета по данным модели
-  if (_model->IsCalc()) {
-    _ui->deposit_result_1->setText(
+  if (_model->IsDepositCalc()) {
+    _ui->depositResult1->setText(
         QString::number(_model->GetInterestPayment(), 'f', 2));
-    _ui->deposit_result_2->setText(
+    _ui->depositResult2->setText(
         QString::number(_model->GetTaxPayment(), 'f', 2));
-    _ui->deposit_result_3->setText(
+    _ui->depositResult3->setText(
         QString::number(_model->GetTotalPayment(), 'f', 2));
   } else {
     ResetResult();
@@ -134,16 +134,16 @@ void DepositView::UpdateResultFromModel() {
 }
 
 void DepositView::ResetResult() {
-  _ui->deposit_result_1->setText("-");
-  _ui->deposit_result_2->setText("-");
-  _ui->deposit_result_3->setText("-");
+  _ui->depositResult1->setText("-");
+  _ui->depositResult2->setText("-");
+  _ui->depositResult3->setText("-");
 }
 
 bool DepositView::OperationsReplenishmentHandle() {
-  for (int i = 0; i < _ui->deposit_add_money_layout->count(); i++) {
+  for (int i = 0; i < _ui->depositAddMoneyLayout->count(); i++) {
     bool isCorrectAddMoney;
 
-    QHBoxLayout *line = qobject_cast<QHBoxLayout *>(_ui->deposit_add_money_layout->itemAt(i)->layout());
+    QHBoxLayout *line = qobject_cast<QHBoxLayout *>(_ui->depositAddMoneyLayout->itemAt(i)->layout());
     QLineEdit *lineLineEdit = qobject_cast<QLineEdit *>(line->itemAt(0)->widget());
     QDateEdit *lineDateEdit = qobject_cast<QDateEdit *>(line->itemAt(1)->widget());
 
@@ -193,11 +193,11 @@ bool DepositView::OperationsReplenishmentHandle() {
 }
 
 bool DepositView::OperationsWithdrawalHandle() {
-  for (int i = 0; i < _ui->deposit_sub_money_layout->count(); i++) {
+  for (int i = 0; i < _ui->depositSubMoneyLayout->count(); i++) {
     bool isCorrectAddMoney;
 
     QHBoxLayout *line = qobject_cast<QHBoxLayout *>(
-        _ui->deposit_sub_money_layout->itemAt(i)->layout());
+        _ui->depositSubMoneyLayout->itemAt(i)->layout());
     QLineEdit *lineLineEdit =
         qobject_cast<QLineEdit *>(line->itemAt(0)->widget());
     QDateEdit *lineDateEdit =
@@ -252,7 +252,7 @@ void DepositView::AddOperationLine(QBoxLayout *layout) {
 
   line->addWidget(new QLineEdit);
   QDateEdit *dateEdit = new QDateEdit;
-  view_helpers::SetupDateEdit(dateEdit);
+  ViewHelpers::SetupDateEdit(dateEdit);
   line->addWidget(dateEdit);
   QPushButton *button = new QPushButton;
   QPixmap pix(":/images/delete.png");
@@ -267,71 +267,71 @@ void DepositView::AddOperationLine(QBoxLayout *layout) {
   connect(button, SIGNAL(clicked()), this, SLOT(DeleteOperationLine()));
 }
 
-void DepositView::SetDepositSumError(const QString &error_text) {
+void DepositView::SetDepositSumError(const QString &errorText) {
   ResetResult();
-  _ui->deposit_sum_edit->setStyleSheet("border: 1px solid red; color: red;");
-  _ui->deposit_sum_edit->setFocus();
-  QMessageBox::critical(0, "Ошибка", error_text);
+  _ui->depositSumEdit->setStyleSheet("border: 1px solid red; color: red;");
+  _ui->depositSumEdit->setFocus();
+  QMessageBox::critical(0, "Ошибка", errorText);
 }
 
-void DepositView::SetDepositMonthsError(const QString &error_text) {
+void DepositView::SetDepositMonthsError(const QString &errorText) {
   ResetResult();
-  _ui->deposit_months_edit->setStyleSheet("border: 1px solid red; color: red;");
-  _ui->deposit_months_edit->setFocus();
-  QMessageBox::critical(0, "Ошибка", error_text);
+  _ui->depositMonthEdit->setStyleSheet("border: 1px solid red; color: red;");
+  _ui->depositMonthEdit->setFocus();
+  QMessageBox::critical(0, "Ошибка", errorText);
 }
 
-void DepositView::SetDepositInterestError(const QString &error_text) {
+void DepositView::SetDepositInterestError(const QString &errorText) {
   ResetResult();
-  _ui->deposit_interest_edit->setStyleSheet(
+  _ui->depositInterestEdit->setStyleSheet(
       "border: 1px solid red; color: red;");
-  _ui->deposit_interest_edit->setFocus();
-  QMessageBox::critical(0, "Ошибка", error_text);
+  _ui->depositInterestEdit->setFocus();
+  QMessageBox::critical(0, "Ошибка", errorText);
 }
 
-void DepositView::SetDepositTaxError(const QString &error_text) {
+void DepositView::SetDepositTaxError(const QString &errorText) {
   ResetResult();
-  _ui->deposit_tax_edit->setStyleSheet("border: 1px solid red; color: red;");
-  _ui->deposit_tax_edit->setFocus();
-  QMessageBox::critical(0, "Ошибка", error_text);
+  _ui->depositTaxEdit->setStyleSheet("border: 1px solid red; color: red;");
+  _ui->depositTaxEdit->setFocus();
+  QMessageBox::critical(0, "Ошибка", errorText);
 }
 
-void DepositView::SetDepositDateStartError(const QString &error_text) {
+void DepositView::SetDepositDateStartError(const QString &errorText) {
   ResetResult();
-  _ui->deposit_start_date_edit->setStyleSheet(
+  _ui->depositStartDateEdit->setStyleSheet(
       "border: 1px solid red; color: red;");
-  _ui->deposit_start_date_edit->setFocus();
-  QMessageBox::critical(0, "Ошибка", error_text);
+  _ui->depositStartDateEdit->setFocus();
+  QMessageBox::critical(0, "Ошибка", errorText);
 }
 
-void DepositView::SetDepositAddMoneyError(const QString &error_text) {
+void DepositView::SetDepositAddMoneyError(const QString &errorText) {
   ResetResult();
-  QMessageBox::critical(0, "Ошибка", error_text);
+  QMessageBox::critical(0, "Ошибка", errorText);
 }
 
-void DepositView::SetDepositSubMoneyError(const QString &error_text) {
+void DepositView::SetDepositSubMoneyError(const QString &errorText) {
   ResetResult();
-  QMessageBox::critical(0, "Ошибка", error_text);
+  QMessageBox::critical(0, "Ошибка", errorText);
 }
 
 void DepositView::ResetDepositSumError() {
-  _ui->deposit_sum_edit->setStyleSheet("");
+  _ui->depositSumEdit->setStyleSheet("");
 }
 
 void DepositView::ResetDepositMonthsError() {
-  _ui->deposit_months_edit->setStyleSheet("");
+  _ui->depositMonthEdit->setStyleSheet("");
 }
 
 void DepositView::ResetDepositInterestError() {
-  _ui->deposit_interest_edit->setStyleSheet("");
+  _ui->depositInterestEdit->setStyleSheet("");
 }
 
 void DepositView::ResetDepositTaxError() {
-  _ui->deposit_tax_edit->setStyleSheet("");
+  _ui->depositTaxEdit->setStyleSheet("");
 }
 
 void DepositView::ResetDepositDateStartError() {
-  _ui->deposit_start_date_edit->setStyleSheet("");
+  _ui->depositStartDateEdit->setStyleSheet("");
 }
 
 void DepositView::ResetAllErrors() {
@@ -348,14 +348,14 @@ void DepositView::HandleDepositButton() {
   bool isCorrectInput;
 
   double sum =
-      _ui->deposit_sum_edit->text().replace(",", ".").toDouble(&isCorrectInput);
+      _ui->depositSumEdit->text().replace(",", ".").toDouble(&isCorrectInput);
   
   if (!isCorrectInput) {
     SetDepositSumError("Поле \"Сумма вклада\" содержит некорректное значение!");
     return;
   }
 
-  int months = _ui->deposit_months_edit->text().toInt(&isCorrectInput);
+  int months = _ui->depositMonthEdit->text().toInt(&isCorrectInput);
   
   if (!isCorrectInput) {
     SetDepositMonthsError(
@@ -364,7 +364,7 @@ void DepositView::HandleDepositButton() {
   }
 
   double interest =
-      _ui->deposit_interest_edit->text().replace(",", ".").toDouble(
+      _ui->depositInterestEdit->text().replace(",", ".").toDouble(
           &isCorrectInput);
   
   if (!isCorrectInput) {
@@ -374,7 +374,7 @@ void DepositView::HandleDepositButton() {
   }
 
   double tax =
-      _ui->deposit_tax_edit->text().replace(",", ".").toDouble(&isCorrectInput);
+      _ui->depositTaxEdit->text().replace(",", ".").toDouble(&isCorrectInput);
   
   if (!isCorrectInput) {
     SetDepositTaxError(
@@ -383,7 +383,7 @@ void DepositView::HandleDepositButton() {
   }
 
   int deposit_year =
-      _ui->deposit_start_date_edit->date().toString("yyyy").toInt(
+      _ui->depositStartDateEdit->date().toString("yyyy").toInt(
           &isCorrectInput);
   
   if (!isCorrectInput) {
@@ -393,7 +393,7 @@ void DepositView::HandleDepositButton() {
   }
 
   int deposit_month =
-      _ui->deposit_start_date_edit->date().toString("MM").toInt(&isCorrectInput);
+      _ui->depositStartDateEdit->date().toString("MM").toInt(&isCorrectInput);
   
   if (!isCorrectInput) {
     SetDepositDateStartError(
@@ -402,7 +402,7 @@ void DepositView::HandleDepositButton() {
   }
 
   int deposit_day =
-      _ui->deposit_start_date_edit->date().toString("dd").toInt(&isCorrectInput);
+      _ui->depositStartDateEdit->date().toString("dd").toInt(&isCorrectInput);
   
   if (!isCorrectInput) {
     SetDepositDateStartError(
@@ -410,22 +410,22 @@ void DepositView::HandleDepositButton() {
     return;
   }
 
-  DepositType type;
+  IDepositType type;
   bool capitalization;
 
-  if (_ui->deposit_period_box->currentIndex() == 1) {
+  if (_ui->depositPeriodBox->currentIndex() == 1) {
     months = months * 12;
   }
 
-  if (_ui->deposit_types_combo->currentIndex() == 0) {
+  if (_ui->depositTypesCombo->currentIndex() == 0) {
     type = Day;
-  } else if (_ui->deposit_types_combo->currentIndex() == 1) {
+  } else if (_ui->depositTypesCombo->currentIndex() == 1) {
     type = Month;
   } else {
     type = End;
   }
   
-  capitalization = _ui->deposit_capitalization_check_box->isChecked();
+  capitalization = _ui->depositCapitalizationCheckBox->isChecked();
 
   _controller->ClearDepositOperationsList();
 
@@ -455,11 +455,11 @@ void DepositView::HandleDepositButton() {
 }
 
 void DepositView::AddOperationReplenishment() {
-  AddOperationLine(_ui->deposit_add_money_layout);
+  AddOperationLine(_ui->depositAddMoneyLayout);
 }
 
 void DepositView::AddOperationWithdrawal() {
-  AddOperationLine(_ui->deposit_sub_money_layout);
+  AddOperationLine(_ui->depositSubMoneyLayout);
 }
 
 void DepositView::DeleteOperationLine() {

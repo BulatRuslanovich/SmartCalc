@@ -7,7 +7,7 @@
 #include <vector>
 
 #include "widgets/qcustomplot.h"
-// #include "../ui/_uigraph_view.h"
+ #include "../ui/ui_GraphView.h"
 #include "ViewHelpers.h"
 
 namespace s21 {
@@ -41,6 +41,8 @@ void GraphView::UpdateGraphWindow(const QString& mathExpression) {
 
   setWindowState(windowState() & (~Qt::WindowMinimized | Qt::WindowActive));
   raise();
+  //raise() используется для того, чтобы поднять окно поверх других окон
+  // в Z-порядке, что делает его видимым и активным для пользователя.
   Draw();
 }
 
@@ -54,13 +56,13 @@ void GraphView::Error(const std::pair<std::string, std::string>& error) {
   UpdateInputFieldsFromModel();
 
   auto errorText = QString::fromStdString(error.second);
-  if (error.first == "x_graph") {
+  if (error.first == "xGraph") {
     SetXBeginError("");
     SetXEndError(errorText);
-  } else if (error.first == "y_graph") {
+  } else if (error.first == "yGraph") {
     SetYBeginError("");
     SetYEndError(errorText);
-  } else if (error.first == "graph_calculation") {
+  } else if (error.first == "graphCalculation") {
     // ничего не делаем
   } else {
     QMessageBox::critical(0, "Ошибка отрисовки графика", errorText);

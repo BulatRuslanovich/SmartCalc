@@ -29,7 +29,7 @@ color:rgb(255, 255, 255);
       </widget>
      </item>
      <item row="0" column="1" colspan="2">
-      <widget class="QLineEdit" name="credit_sum_edit"/>
+      <widget class="QLineEdit" name="creditSumEdit"/>
      </item>
      <item row="1" column="0">
       <widget class="QLabel" name="label_4">
@@ -41,10 +41,10 @@ color:rgb(255, 255, 255);
      <item row="1" column="1" colspan="2">
       <layout class="QHBoxLayout" name="horizontalLayout_6">
        <item>
-        <widget class="QLineEdit" name="credit_months_edit"/>
+        <widget class="QLineEdit" name="creditMonthEdit"/>
        </item>
        <item>
-        <widget class="QComboBox" name="credit_period_box">
+        <widget class="QComboBox" name="creditPeriodBox">
          <item>
           <property name="text">
            <string>Месяцев</string>
@@ -73,7 +73,7 @@ color:rgb(255, 255, 255);
       </widget>
      </item>
      <item row="2" column="1" colspan="2">
-      <widget class="QLineEdit" name="credit_interest_edit"/>
+      <widget class="QLineEdit" name="creditInterestEdit"/>
      </item>
      <item row="3" column="0" colspan="2">
       <widget class="QLabel" name="label_6">
@@ -125,7 +125,7 @@ color:rgb(255, 255, 255);
           </widget>
          </item>
          <item>
-          <widget class="QRadioButton" name="payments_annuity_radio">
+          <widget class="QRadioButton" name="annuityRadio">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
              <horstretch>0</horstretch>
@@ -172,7 +172,7 @@ color:rgb(255, 255, 255);
           </widget>
          </item>
          <item>
-          <widget class="QRadioButton" name="payments_differentiated_radio">
+          <widget class="QRadioButton" name="differentiatedRadio">
            <property name="text">
             <string>Дифференцированные</string>
            </property>
@@ -187,7 +187,7 @@ color:rgb(255, 255, 255);
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_9">
      <item>
-      <widget class="QPushButton" name="credit_calculate_button">
+      <widget class="QPushButton" name="creditCalcButton">
        <property name="minimumSize">
         <size>
          <width>180</width>
@@ -240,7 +240,7 @@ QPushButton:Hover {
      <item row="0" column="1">
       <layout class="QHBoxLayout" name="horizontalLayout_10">
        <item>
-        <widget class="QLabel" name="credit_result_1">
+        <widget class="QLabel" name="creditRes1">
          <property name="font">
           <font>
            <bold>true</bold>
@@ -281,7 +281,7 @@ QPushButton:Hover {
      <item row="1" column="1">
       <layout class="QHBoxLayout" name="horizontalLayout_11">
        <item>
-        <widget class="QLabel" name="credit_result_2">
+        <widget class="QLabel" name="creditRes2">
          <property name="font">
           <font>
            <bold>true</bold>
@@ -322,7 +322,7 @@ QPushButton:Hover {
      <item row="2" column="1">
       <layout class="QHBoxLayout" name="horizontalLayout_12">
        <item>
-        <widget class="QLabel" name="credit_result_3">
+        <widget class="QLabel" name="creditRes3">
          <property name="font">
           <font>
            <bold>true</bold>

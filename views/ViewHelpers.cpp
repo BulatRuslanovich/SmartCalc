@@ -8,8 +8,8 @@
 
 #include "../helpers/mathHelper.h"
 
-namespace s21::ViewHelpers {
-
+namespace s21 {
+namespace ViewHelpers {
 /**
  * @brief Настраивает виджет редактирования даты.
  *
@@ -20,14 +20,14 @@ namespace s21::ViewHelpers {
  * @param dateEdit Указатель на виджет редактирования даты (QDateEdit).
  */
 void SetupDateEdit(QDateEdit *dateEdit) {
-  dateEdit->setDisplayFormat("dd.MM.yyyy");  // Устанавливаем формат отображения
-                                             // даты на "день.месяц.год"
-  dateEdit->setCalendarPopup(true);  // Включаем всплывающее календарное окно
+  dateEdit->setDisplayFormat("dd.MM.yyyy");
+
+  dateEdit->setCalendarPopup(true);
   dateEdit->calendarWidget()->setLocale(
-      QLocale("ru_RU"));  // Устанавливаем русскую локаль для календаря
-  QDate date = QDate::currentDate();  // Получаем текущую дату
+      QLocale("ru_RU"));
+  QDate date = QDate::currentDate();
   dateEdit->setDate(
-      date);  // Устанавливаем текущую дату в виджете редактирования даты
+      date);
 }
 
 /**
@@ -42,22 +42,17 @@ void SetupDateEdit(QDateEdit *dateEdit) {
  * не найден.
  */
 QLayout *FindParentLayout(QWidget *widget, QLayout *parent) {
-  // Проходим по всем дочерним элементам родительского макета
   for (QObject *obj : parent->children()) {
-    auto *layout = qobject_cast<QLayout *>(obj);  // Преобразуем объект в макет
+    auto *layout = qobject_cast<QLayout *>(obj);
 
-    // Если объект является макетом
     if (layout != nullptr) {
-      // Если макет содержит указанный виджет, возвращаем этот макет
       if (layout->indexOf(widget) > -1) {
         return layout;
       }
-      // Если макет содержит другие дочерние элементы, вызываем функцию
-      // рекурсивно
+
       else if (!layout->children().isEmpty()) {
         layout = FindParentLayout(widget, layout);
 
-        // Если родительский макет найден в дочерних элементах, возвращаем его
         if (layout != nullptr) {
           return layout;
         }
@@ -65,7 +60,6 @@ QLayout *FindParentLayout(QWidget *widget, QLayout *parent) {
     }
   }
 
-  // Если родительский макет не найден, возвращаем nullptr
   return nullptr;
 }
 
@@ -80,17 +74,12 @@ QLayout *FindParentLayout(QWidget *widget, QLayout *parent) {
  * не найден.
  */
 QLayout *FindParentLayout(QWidget *widget) {
-  // Если у виджета есть родительский виджет
   if (widget->parentWidget() != nullptr) {
-    // Если у родительского виджета есть макет
     if (widget->parentWidget()->layout() != nullptr) {
-      // Вызываем вспомогательную функцию для поиска макета в родительском
-      // макете
       return FindParentLayout(widget, widget->parentWidget()->layout());
     }
   }
 
-  // Если родительский макет не найден, возвращаем nullptr
   return nullptr;
 }
 
@@ -106,8 +95,11 @@ QLayout *FindParentLayout(QWidget *widget) {
  * @return Строка типа QString, содержащая преобразованное число.
  */
 QString DoubleToQStr(double num, double precision) {
-  return QString::fromStdString(mathHelper::RemoveTrailingZero(
-      QString::number(num, 'f', precision).toStdString()));
+  return QString::fromStdString(mathHelper::RemoveTrailingZeros(
+      QString::number(num, 'f', static_cast<int>(precision)).toStdString()));
+
 }
 
+
+}
 }  // namespace s21::ViewHelpers

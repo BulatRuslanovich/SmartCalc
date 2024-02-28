@@ -24,7 +24,7 @@ class MainView final : public QMainWindow {
 
  public:
   MainView(MathView* mathView, CreditView* creditView, DepositView* depositView, QWidget* parent = nullptr);
-  ~MainView();
+  ~MainView() override;
 
  private:
   Ui::MainView* _ui;

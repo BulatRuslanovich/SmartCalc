@@ -58,7 +58,7 @@ color:rgb(255, 255, 255);
          <item row="0" column="1">
           <layout class="QHBoxLayout" name="horizontalLayout_21">
            <item>
-            <widget class="QLineEdit" name="deposit_sum_edit"/>
+            <widget class="QLineEdit" name="depositSumEdit"/>
            </item>
            <item>
             <widget class="QLabel" name="label_32">
@@ -90,10 +90,10 @@ color:rgb(255, 255, 255);
          <item row="1" column="1">
           <layout class="QHBoxLayout" name="horizontalLayout_16">
            <item>
-            <widget class="QLineEdit" name="deposit_months_edit"/>
+            <widget class="QLineEdit" name="depositMonthEdit"/>
            </item>
            <item>
-            <widget class="QComboBox" name="deposit_period_box">
+            <widget class="QComboBox" name="depositPeriodBox">
              <item>
               <property name="text">
                <string>Месяцев</string>
@@ -116,7 +116,7 @@ color:rgb(255, 255, 255);
           </widget>
          </item>
          <item row="2" column="1">
-          <widget class="QDateEdit" name="deposit_start_date_edit">
+          <widget class="QDateEdit" name="depositStartDateEdit">
            <property name="displayFormat">
             <string>dd.MM.yyyy</string>
            </property>
@@ -138,7 +138,7 @@ color:rgb(255, 255, 255);
          <item row="3" column="1">
           <layout class="QHBoxLayout" name="horizontalLayout_22">
            <item>
-            <widget class="QLineEdit" name="deposit_interest_edit"/>
+            <widget class="QLineEdit" name="depositInterestEdit"/>
            </item>
            <item>
             <widget class="QLabel" name="label_30">
@@ -170,7 +170,7 @@ color:rgb(255, 255, 255);
          <item row="4" column="1">
           <layout class="QHBoxLayout" name="horizontalLayout_23">
            <item>
-            <widget class="QLineEdit" name="deposit_tax_edit"/>
+            <widget class="QLineEdit" name="depositTaxEdit"/>
            </item>
            <item>
             <widget class="QLabel" name="label_31">
@@ -200,7 +200,7 @@ color:rgb(255, 255, 255);
           </widget>
          </item>
          <item row="5" column="1">
-          <widget class="QComboBox" name="deposit_periodicity_types_combo">
+          <widget class="QComboBox" name="depositTypesCombo">
            <item>
             <property name="text">
              <string>Каждый день</string>
@@ -264,7 +264,7 @@ color:rgb(255, 255, 255);
             </widget>
            </item>
            <item>
-            <widget class="QCheckBox" name="deposit_capitalization_check_box">
+            <widget class="QCheckBox" name="depositCapitalizationCheckBox">
              <property name="text">
               <string>Капитализация процентов</string>
              </property>
@@ -285,7 +285,7 @@ color:rgb(255, 255, 255);
          <item row="7" column="1">
           <layout class="QVBoxLayout" name="verticalLayout_9">
            <item>
-            <layout class="QVBoxLayout" name="deposit_add_money_layout">
+            <layout class="QVBoxLayout" name="depositAddMoneyLayout">
              <property name="sizeConstraint">
               <enum>QLayout::SetMinimumSize</enum>
              </property>
@@ -336,12 +336,12 @@ color:rgb(255, 255, 255);
          <item row="8" column="1">
           <layout class="QVBoxLayout" name="verticalLayout_4">
            <item>
-            <layout class="QVBoxLayout" name="deposit_sub_money_layout"/>
+            <layout class="QVBoxLayout" name="depositSubMoneyLayout"/>
            </item>
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout_20">
              <item>
-              <widget class="QPushButton" name="AddSubingButton">
+              <widget class="QPushButton" name="addSubingButton">
                <property name="minimumSize">
                 <size>
                  <width>200</width>
@@ -375,7 +375,7 @@ color:rgb(255, 255, 255);
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_18">
          <item>
-          <widget class="QPushButton" name="deposit_calculate_button">
+          <widget class="QPushButton" name="depositCalcButton">
            <property name="minimumSize">
             <size>
              <width>152</width>
@@ -426,7 +426,7 @@ color:rgb(255, 255, 255);
          <item row="0" column="1">
           <layout class="QHBoxLayout" name="horizontalLayout_13">
            <item>
-            <widget class="QLabel" name="deposit_result_1">
+            <widget class="QLabel" name="depositResult1">
              <property name="font">
               <font>
                <bold>true</bold>
@@ -467,7 +467,7 @@ color:rgb(255, 255, 255);
          <item row="1" column="1">
           <layout class="QHBoxLayout" name="horizontalLayout_14">
            <item>
-            <widget class="QLabel" name="deposit_result_2">
+            <widget class="QLabel" name="depositResult2">
              <property name="font">
               <font>
                <bold>true</bold>
@@ -508,7 +508,7 @@ color:rgb(255, 255, 255);
          <item row="2" column="1">
           <layout class="QHBoxLayout" name="horizontalLayout_15">
            <item>
-            <widget class="QLabel" name="deposit_result_3">
+            <widget class="QLabel" name="depositResult3">
              <property name="font">
               <font>
                <bold>true</bold>

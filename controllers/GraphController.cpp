@@ -8,7 +8,7 @@ namespace s21 {
 GraphController::GraphController(IGraphModel *model) : _model(model) {}
 
 void GraphController::SetExpression(const QString &str) {
-  _model->SetExpression(str.toStdString());
+  _model->SetGraphExpression(str.toStdString());
 }
 
 void GraphController::SetBeginX(double newX) { _model->SetBeginX(newX); }

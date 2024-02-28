@@ -11,11 +11,11 @@
 #include "../interfaces/ICreditModelPublic.h"
 #include "../interfaces/observers/IObserverCredit.h"
 
-QT_BEGIN_NAMESPACE
+
 namespace Ui {
 class CreditView;
 }
-QT_END_NAMESPACE
+
 
 namespace s21 {
 
@@ -31,7 +31,7 @@ class CreditView final : public QWidget,
   CreditView(CreditView&& other) = delete;
   CreditView& operator=(const CreditView& other) = delete;
   CreditView& operator=(CreditView&& other) = delete;
-  ~CreditView();
+  ~CreditView() override;
 
   void Update() override;
   void Error(const std::pair<std::string, std::string>& error) override;

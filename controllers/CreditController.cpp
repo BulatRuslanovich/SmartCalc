@@ -18,7 +18,7 @@ void CreditController::SetCreditInterest(double interest) {
 }
 
 void CreditController::SetCreditType(int type) {
-  _model->SetCreditType(static_cast<CreditType>(type));
+  _model->SetCreditType(static_cast<ICreditType>(type));
 }
 
 void CreditController::CalculateCredit() { _model->CalculateCredit(); }

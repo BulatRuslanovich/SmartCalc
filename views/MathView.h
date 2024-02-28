@@ -21,7 +21,7 @@ namespace s21 {
 class MathView final : public QWidget,
                        public IObserverMathError,
                        public IObserverMathUpdate,
-                       public IMathModelPublic {
+                       public IObserverGraphError {
   Q_OBJECT
 
  public:
@@ -33,7 +33,7 @@ class MathView final : public QWidget,
   MathView(MathView&& other) = delete;
   MathView& operator=(const MathView& other) = delete;
   MathView& operator=(MathView&& other) = delete;
-  ~MathView();
+  ~MathView() override;
 
   void Update() override;
   void Error(const std::pair<std::string, std::string>& error) override;

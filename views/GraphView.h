@@ -29,7 +29,7 @@ class GraphView final : public QDialog,
   GraphView(GraphView&& other) = delete;
   GraphView& operator=(const GraphView& other) = delete;
   GraphView& operator=(GraphView&& other) = delete;
-  ~GraphView();
+  ~GraphView() override;
 
   void UpdateGraphWindow(const QString& mathExpression);
   void Update() override;

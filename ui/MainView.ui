@@ -299,7 +299,7 @@
                             <attribute name="title">
                                 <string>Инженерный калькулятор</string>
                             </attribute>
-                            <layout class="QVBoxLayout" name="verticalLayout_6"/>
+                            <layout class="QVBoxLayout" name="MainCalcWindow"/>
                         </widget>
                         <widget class="QWidget" name="tab_2">
                             <property name="styleSheet">
@@ -310,7 +310,7 @@
                             <attribute name="title">
                                 <string>Кредитный калькулятор</string>
                             </attribute>
-                            <layout class="QVBoxLayout" name="verticalLayout_7"/>
+                            <layout class="QVBoxLayout" name="CreditCalcWindow"/>
                         </widget>
                         <widget class="QWidget" name="tab_3">
                             <property name="styleSheet">
@@ -321,7 +321,7 @@
                             <attribute name="title">
                                 <string>Депозитный калькулятор</string>
                             </attribute>
-                            <layout class="QVBoxLayout" name="verticalLayout_8"/>
+                            <layout class="QVBoxLayout" name="DepositCalcWindow"/>
                         </widget>
                     </widget>
                 </item>

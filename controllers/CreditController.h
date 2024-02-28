@@ -11,6 +11,7 @@
 namespace s21 {
 
 class CreditController final : public ICreditController {
+ public:
   CreditController() = delete;
   explicit CreditController(ICreditModel* model);
   CreditController(const CreditController& other) = delete;

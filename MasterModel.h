@@ -17,7 +17,7 @@
 
 namespace s21 {
 
-class MasterModel final : IMathModel, ICreditModel, IDepositModel, IGraphModel {
+class MasterModel final : public IMathModel, public ICreditModel, public IDepositModel, public IGraphModel {
  public:
   MasterModel();
   MasterModel(const MasterModel& other) = delete;

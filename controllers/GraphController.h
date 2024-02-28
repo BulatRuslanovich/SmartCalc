@@ -13,6 +13,7 @@
 namespace s21 {
 
 class GraphController final : public IGraphController {
+ public:
   GraphController() = delete;
   explicit GraphController(IGraphModel* model);
   GraphController(const GraphController& other) = delete;

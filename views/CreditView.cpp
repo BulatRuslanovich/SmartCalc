@@ -7,7 +7,7 @@
 #include <QMessageBox>
 
 #include "ViewHelpers.h"
-// #include "../ui/ui_CreditView.h"
+ #include "../ui/ui_CreditView.h"
 
 namespace s21 {
 
@@ -17,6 +17,7 @@ CreditView::CreditView(ICreditController* controller, ICreditModelPublic* model,
       _ui(new Ui::CreditView),
       _controller(controller),
       _model(model) {
+
   _ui->setupUi(this);
   SetupCreditButtons();
   _model->AddObserver(static_cast<IObserverCreditUpdate*>(this));
@@ -64,7 +65,7 @@ void CreditView::SetupCreditButtons() {
 }
 
 void CreditView::UpdateInputFieldsFromModel() {
-  CreditType type = _model->GetType();
+  ICreditType type = _model->GetType();
 
   if (type == Differentiated) {
     _ui->differentiatedRadio->setChecked(true);
@@ -86,7 +87,7 @@ void CreditView::UpdateInputFieldsFromModel() {
 }
 
 void CreditView::UpdateResultFromModel() {
-  if (_model->IsCalc()) {
+  if (_model->IsCreditCalc()) {
     double monthPayMin = _model->GetMin();
     double monthPayMax = _model->GetMax();
     double overPay = _model->GetOver();
@@ -179,7 +180,7 @@ void CreditView::HandleCreditButton() {
 
   sum = QString::number(sum, 'f', 2).toDouble();
   interest = QString::number(interest, 'f', 2).toDouble();
-  CreditType type;
+  ICreditType type;
 
   if (_ui->differentiatedRadio->isChecked()) {
     type = Differentiated;
