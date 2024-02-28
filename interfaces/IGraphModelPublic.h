@@ -6,6 +6,7 @@
 #define SMARTCALC_IGRAPHMODELPUBLIC_H
 
 #include <string>
+#include <vector>
 
 #include "observers/IObserverGraph.h"
 

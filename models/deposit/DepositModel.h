@@ -76,7 +76,7 @@ class DepositModel {
     _isCalc = false;
   }
 
-  void set_tax(double newTax) noexcept {
+  void setTax(double newTax) noexcept {
     _tax = newTax;
     _isCalc = false;
   }

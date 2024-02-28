@@ -83,6 +83,8 @@ set(PROJECT_SOURCES
         views/DepositView.h
         views/MainView.cpp
         views/MainView.h
+        MasterModel.cpp
+        MasterModel.h
 
 
 )

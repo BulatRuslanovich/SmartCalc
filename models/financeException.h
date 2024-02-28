@@ -2,8 +2,8 @@
 // Created by bulatruslanovich on 23/02/2024.
 //
 
-#ifndef SMARTCALC_CALCEXCEPTION_H
-#define SMARTCALC_CALCEXCEPTION_H
+#ifndef SMARTCALC_FINANCEEXCEPTION_H
+#define SMARTCALC_FINANCEEXCEPTION_H
 
 #include <stdexcept>
 
@@ -82,4 +82,4 @@ class FinanceOperationNoMoneyException : public FinanceException {
 
 }  // namespace s21
 
-#endif  // SMARTCALC_CALCEXCEPTION_H
+#endif  //SMARTCALC_FINANCEEXCEPTION_H

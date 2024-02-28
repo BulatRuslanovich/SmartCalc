@@ -12,7 +12,7 @@ class IGraphModel : public IGraphModelPublic {
  public:
   virtual ~IGraphModel() = default;
 
-  virtual void SetExpression(const std::string& newExp) = 0;
+  virtual void SetGraphExpression(const std::string& newExp) = 0;
   virtual void SetBeginX(double newX) = 0;
   virtual void SetEndX(double newX) = 0;
   virtual void SetBeginY(double newY) = 0;

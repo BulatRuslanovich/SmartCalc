@@ -10,7 +10,7 @@
 #include "observers/IObserverDeposit.h"
 
 namespace s21 {
-enum DepositType {
+enum IDepositType {
   Day,    // каждый день
   Month,  // раз в месяц
   End,    // в конце срока
@@ -23,12 +23,12 @@ class IDepositModelPublic {
   virtual double GetInterestPayment() = 0;
   virtual double GetTotalPayment() = 0;
   virtual double GetTaxPayment() = 0;
-  virtual bool IsCalc() = 0;
-  virtual double GetSum() = 0;
-  virtual int GetMonths() = 0;
-  virtual double GetInterest() = 0;
+  virtual bool IsDepositCalc() = 0;
+  virtual double GetDepositSum() = 0;
+  virtual int GetDepositMonths() = 0;
+  virtual double GetDepositInterest() = 0;
   virtual double GetTax() = 0;
-  virtual DepositType GetDepositType() = 0;
+  virtual IDepositType GetDepositType() = 0;
   virtual bool GetDepositCapitalizationType() = 0;
 
   virtual void AddObserver(IObserverDepositUpdate* observer) = 0;

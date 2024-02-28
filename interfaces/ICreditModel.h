@@ -14,7 +14,7 @@ class ICreditModel : public ICreditModelPublic {
   virtual void SetCreditSum(double sum) = 0;
   virtual void SetCreditMonths(int months) = 0;
   virtual void SetCreditInterest(double interest) = 0;
-  virtual void SetCreditType(CreditType type) = 0;
+  virtual void SetCreditType(ICreditType type) = 0;
 
   virtual void CalculateCredit() = 0;
 };

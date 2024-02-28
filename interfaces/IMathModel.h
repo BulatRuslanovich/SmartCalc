@@ -15,7 +15,7 @@ class IMathModel : public IMathModelPublic {
   virtual void SetExpression(const std::string& newExp) = 0;
   virtual void SetX(double x) = 0;
   virtual void ExpressionAdd(const char* add) = 0;
-  virtual void ExpressionEraseEnd() = 0;
+  virtual void ExpressionDeleteEnd() = 0;
 
   virtual void CalculateX() = 0;
 };

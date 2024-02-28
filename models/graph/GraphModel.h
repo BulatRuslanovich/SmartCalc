@@ -31,7 +31,7 @@ class GraphModel final {
   void setXEnd(double newX) noexcept { xEnd = newX; }
   void setYEnd(double newY) noexcept { yEnd = newY; }
 
-  void setExpression(const std::string& newExpression) {
+  void setGraphExpression(const std::string& newExpression) {
     mathModel->setExpression(newExpression);
   }
 
