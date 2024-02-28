@@ -53,7 +53,7 @@ double MasterModel::GetResult() {
 }
 
 double MasterModel::GetX() {
-    return mathModel->getIsCalc();
+    return mathModel->getX_Value();
 }
 
 std::string MasterModel::GetExpression() {
@@ -265,31 +265,31 @@ void MasterModel::GraphExceptionHandle() {
     throw;
   } catch (const WrongXGraphException &) {
     AnnunciatorErrorGraphObservers(
-        {"x_graph", "X должно быть от " +
+        {"xGraph", "X должно быть от " +
                         mathHelper::doubleToString(graphModel->_minX) +
                         " до " +
                         mathHelper::doubleToString(graphModel->_maxX)});
   } catch (const WrongYGraphException &) {
     AnnunciatorErrorGraphObservers(
-        {"y_graph", "Y должно быть от " +
+        {"yGraph", "Y должно быть от " +
                         mathHelper::doubleToString(graphModel->_minY) +
                         " до " +
                         mathHelper::doubleToString(graphModel->_maxY)});
   } catch (const InputZeroLengthException &) {
     AnnunciatorErrorGraphObservers(
-        {"graph_calculation",
+        {"graphCalculation",
          "Ошибка вычисления точек графика - Математическое выражение должно "
          "быть заполнено!"});
 
   } catch (const InputTooLongException &) {
     AnnunciatorErrorGraphObservers(
-        {"graph_calculation",
+        {"graphCalculation",
          "Ошибка вычисления точек графика - Математическое выражение должно "
          "быть длиной менее " +
              mathHelper::doubleToString(
                  static_cast<int>(MathModel::maxInputSize))});
   } catch (const InputIncorrectException &) {
-    AnnunciatorErrorGraphObservers({"graph_calculation",
+    AnnunciatorErrorGraphObservers({"graphCalculation",
                                "Ошибка вычисления точек графика - "
                                "математическое выражение некорректно!"});
   } catch (const CalcException &) {

@@ -26,7 +26,6 @@ color: rgb(255, 255, 255)
       <widget class="QPlainTextEdit" name="srcInput">
        <property name="styleSheet">
         <string notr="true">QPlainTextEdit {
-background-color:rgb(63, 63, 63);
 font: 700 11pt &quot;Cantarell&quot;;
 }</string>
        </property>

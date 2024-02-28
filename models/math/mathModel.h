@@ -28,7 +28,7 @@ class MathModel final {
   ~MathModel() = default;
 
   void setExpression(const std::string& newExpression);
-  void setX(double newX) { x = newX; };
+  void setX(double newX) { this->x = newX; };
   void ExpressionAddString(const std::string& str);
   void ExpressionDeleteEnd();
 

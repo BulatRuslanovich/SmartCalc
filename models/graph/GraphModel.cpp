@@ -25,8 +25,8 @@ namespace s21 {
  */
 GraphModel::GraphModel()
     : mathModel(new MathModel),
-      xBegin(-100),
-      xEnd(100),
+      xBegin(-10),
+      xEnd(10),
       yBegin(0),
       yEnd(0),
       yScaleAuto(true),

@@ -55,7 +55,7 @@ void MathView::Error(const std::pair<std::string, std::string>& error) {
     SetInputValueError(errorText);
   } else if (error.first == "wrong_operator") {
     QMessageBox::critical(0, "Ошибка", errorText);
-  } else if (error.first == "graph_calculation") {
+  } else if (error.first == "graphCalculation") {
     SetInputValueError(errorText);
   } else {
     QMessageBox::critical(0, "Неизвестная ошибка", errorText);

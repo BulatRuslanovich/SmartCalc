@@ -195,14 +195,7 @@ color:rgb(255, 255, 255);
         </size>
        </property>
        <property name="styleSheet">
-        <string notr="true">QPushButton {
-  transition-duration: 0.4s;
-}
-
-QPushButton:Hover {
-  background-color: rgb(232,112,25)
-  color: white;
-}
+        <string notr="true">
 </string>
        </property>
        <property name="text">

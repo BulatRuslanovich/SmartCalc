@@ -211,6 +211,8 @@ void MathModel::CalcRpn() {
           break;
         }
       }
+
+      tokenStack.push(check);
     } else {
       throw InputIncorrectException("Unknown token");
     }
@@ -279,7 +281,7 @@ void MathModel::ResetModelResults() noexcept {
  */
 double MathModel::CalcX(double xValue) {
   if (needInit) {
-    InitCalcMachine();
+    InitMathModel();
   }
 
   double res = 0.0;
@@ -332,7 +334,7 @@ double MathModel::CalcX(double xValue) {
   Token lastToken = tokenStack.top();
   tokenStack.pop();
 
-  if (tokenStack.empty()) {
+  if (!tokenStack.empty()) {
     throw InputIncorrectException("Calculate error");
   } else {
     res = lastToken.value;
