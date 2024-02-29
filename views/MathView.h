@@ -69,6 +69,7 @@ class MathView final : public QWidget,
   void HandleButtonLBracket();
   void HandleButtonRBracket();
   void HandleButtonPow();
+  void HandleButtonPow2();
   void HandleButtonCos();
   void HandleButtonSin();
   void HandleButtonTan();

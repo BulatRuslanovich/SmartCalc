@@ -131,7 +131,7 @@ class DepositModel {
   bool CheckSum(double sum) const noexcept;
   bool CheckMonth() const noexcept;
   bool CheckInterest() const noexcept;
-  bool CheckTax() const noexcept;
+//  bool CheckTax() const noexcept;
   bool CheckDate(int year, int month, int day) const noexcept;
   void CheckOperations() const;
   void CalculateHandle();

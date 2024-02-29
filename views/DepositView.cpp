@@ -44,8 +44,8 @@ void DepositView::Error(const std::pair<std::string, std::string> &error) {
     SetDepositMonthsError(errorText);
   } else if (error.first == "interest") {
     SetDepositInterestError(errorText);
-  } else if (error.first == "tax") {
-    SetDepositTaxError(errorText);
+//  } else if (error.first == "tax") {
+//    SetDepositTaxError(errorText);
   } else if (error.first == "date_start") {
     SetDepositDateStartError(errorText);
   } else if (error.first == "replenishment_date") {
@@ -78,8 +78,8 @@ void DepositView::SetupDepositButtons() {
           SLOT(HandleDepositMonthsChanged()));
   connect(_ui->depositInterestEdit, SIGNAL(textChanged(QString)), this,
           SLOT(HandleDepositInterestChanged()));
-  connect(_ui->depositTaxEdit, SIGNAL(textChanged(QString)), this,
-          SLOT(HandleDepositTaxChanged()));
+//  connect(_ui->depositTaxEdit, SIGNAL(textChanged(QString)), this,
+//          SLOT(HandleDepositTaxChanged()));
   connect(_ui->depositStartDateEdit, SIGNAL(dateChanged(const QDate)), this,
           SLOT(HandleDepositDateStartChanged()));
 }
@@ -97,7 +97,7 @@ void DepositView::UpdateInputFieldsFromModel() {
   _ui->depositMonthEdit->setText(QString::number(months));
   _ui->depositInterestEdit->setText(ViewHelpers::DoubleToQStr(_model->GetDepositInterest(), 2));
 
-  _ui->depositTaxEdit->setText(ViewHelpers::DoubleToQStr(_model->GetTax(), 2));
+//  _ui->depositTaxEdit->setText(ViewHelpers::DoubleToQStr(_model->GetTax(), 2));
  
 
   bool capitalization = _model->GetDepositCapitalizationType();
@@ -128,6 +128,7 @@ void DepositView::UpdateResultFromModel() {
         QString::number(_model->GetTaxPayment(), 'f', 2));
     _ui->depositResult3->setText(
         QString::number(_model->GetTotalPayment(), 'f', 2));
+    _ui->depositResult4->setText(QString::number(_model->GetInterestPayment() - _model->GetTaxPayment(), 'f', 2));
   } else {
     ResetResult();
   }
@@ -137,6 +138,7 @@ void DepositView::ResetResult() {
   _ui->depositResult1->setText("-");
   _ui->depositResult2->setText("-");
   _ui->depositResult3->setText("-");
+  _ui->depositResult4->setText("-");
 }
 
 bool DepositView::OperationsReplenishmentHandle() {
@@ -289,12 +291,12 @@ void DepositView::SetDepositInterestError(const QString &errorText) {
   QMessageBox::critical(0, "Ошибка", errorText);
 }
 
-void DepositView::SetDepositTaxError(const QString &errorText) {
-  ResetResult();
-  _ui->depositTaxEdit->setStyleSheet("border: 1px solid red; color: red;");
-  _ui->depositTaxEdit->setFocus();
-  QMessageBox::critical(0, "Ошибка", errorText);
-}
+//void DepositView::SetDepositTaxError(const QString &errorText) {
+//  ResetResult();
+//  _ui->depositTaxEdit->setStyleSheet("border: 1px solid red; color: red;");
+//  _ui->depositTaxEdit->setFocus();
+//  QMessageBox::critical(0, "Ошибка", errorText);
+//}
 
 void DepositView::SetDepositDateStartError(const QString &errorText) {
   ResetResult();
@@ -326,9 +328,9 @@ void DepositView::ResetDepositInterestError() {
   _ui->depositInterestEdit->setStyleSheet("");
 }
 
-void DepositView::ResetDepositTaxError() {
-  _ui->depositTaxEdit->setStyleSheet("");
-}
+//void DepositView::ResetDepositTaxError() {
+//  _ui->depositTaxEdit->setStyleSheet("");
+//}
 
 void DepositView::ResetDepositDateStartError() {
   _ui->depositStartDateEdit->setStyleSheet("");
@@ -338,7 +340,7 @@ void DepositView::ResetAllErrors() {
   ResetDepositSumError();
   ResetDepositMonthsError();
   ResetDepositInterestError();
-  ResetDepositTaxError();
+//  ResetDepositTaxError();
   ResetDepositDateStartError();
 }
 
@@ -373,14 +375,14 @@ void DepositView::HandleDepositButton() {
     return;
   }
 
-  double tax =
-      _ui->depositTaxEdit->text().replace(",", ".").toDouble(&isCorrectInput);
-  
-  if (!isCorrectInput) {
-    SetDepositTaxError(
-        "Поле \"Налоговая ставка\" содержит некорректное значение!");
-    return;
-  }
+//  double tax =
+//      _ui->depositTaxEdit->text().replace(",", ".").toDouble(&isCorrectInput);
+//
+//  if (!isCorrectInput) {
+//    SetDepositTaxError(
+//        "Поле \"Налоговая ставка\" содержит некорректное значение!");
+//    return;
+//  }
 
   int deposit_year =
       _ui->depositStartDateEdit->date().toString("yyyy").toInt(
@@ -442,12 +444,12 @@ void DepositView::HandleDepositButton() {
   sum = QString::number(sum, 'f', 2).toDouble();
   months = QString::number(months, 'f', 2).toDouble();
   interest = QString::number(interest, 'f', 2).toDouble();
-  tax = QString::number(tax, 'f', 2).toDouble();
+//  tax = QString::number(tax, 'f', 2).toDouble();
 
   _controller->SetDepositSum(sum);
   _controller->SetDepositPeriod(months);
   _controller->SetDepositInterest(interest);
-  _controller->SetDepositTax(tax);
+//  _controller->SetDepositTax(tax);
   _controller->SetDepositPeriodicityType(type);
   _controller->SetDepositCapitalization(capitalization);
   _controller->SetDepositDateStart(deposit_year, deposit_month, deposit_day);
@@ -490,7 +492,7 @@ void DepositView::HandleDepositInterestChanged() {
   ResetDepositInterestError();
 }
 
-void DepositView::HandleDepositTaxChanged() { ResetDepositTaxError(); }
+//void DepositView::HandleDepositTaxChanged() { ResetDepositTaxError(); }
 
 void DepositView::HandleDepositDateStartChanged() {
   ResetDepositDateStartError();

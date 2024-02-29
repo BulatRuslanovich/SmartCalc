@@ -20,7 +20,7 @@ DepositModel::DepositModel() noexcept
     : _sum(0),
       _months(0),
       _interest(0),
-      _tax(0),
+      _tax(13),
       payPeriod(),
       _capitalization(false),
       yearStart(0),
@@ -75,9 +75,9 @@ void DepositModel::CheckModelData() const {
     throw s21::FinanceInterestException("Incorrect interest");
   }
 
-  if (!CheckTax()) {
-    throw s21::FinanceTaxException("Incorrect tax");
-  }
+//  if (!CheckTax()) {
+//    throw s21::FinanceTaxException("Incorrect tax");
+//  }
 
   CheckOperations();
 }
@@ -136,10 +136,10 @@ bool DepositModel::CheckInterest() const noexcept {
  * @return true, если налог для депозита корректен, в противном случае - false.
  * @note Этот метод не бросает исключений (noexcept).
  */
-bool DepositModel::CheckTax() const noexcept {
-  return !(_tax < minDepositTax || _tax > maxDepositTax || std::isinf(_tax) ||
-           std::isnan(_tax));
-}
+//bool DepositModel::CheckTax() const noexcept {
+//  return !(_tax < minDepositTax || _tax > maxDepositTax || std::isinf(_tax) ||
+//           std::isnan(_tax));
+//}
 
 /**
  * @brief Проверяет корректность даты операции с депозитом.
@@ -200,33 +200,33 @@ void DepositModel::CheckOperations() const {
  * средств для проведения операции.
  */
 void DepositModel::CalculateHandle() {
-  int startYear = yearStart;    // Получаем год начала
-  int startMonth = monthStart;  // Получаем месяц начала
-  int startDay = dayStart;      // Получаем день начала
+  int startYear = yearStart;
+  int startMonth = monthStart;
+  int startDay = dayStart;
 
   if (!CheckDate(startYear, startMonth,
-                 startDay)) {  // Проверяем правильность даты начала
+                 startDay)) {
     throw s21::FinanceDateStartException("Incorrect date start");
   }
 
   double totalInterestPayment = 0;  // Общая сумма выплаты процентов
   double totalSum = _sum;  // Общая сумма вклада
-  double totalTax;         // Общий налог на доход
+  double totalTax = 0;         // Общий налог на доход
 
-  double pd = _interest / (100 * 365);  // Расчет процентной ставки на день
+  double pd = _interest / (100 * 365);
   double pdv =
       _interest / (100 * 366);  // Расчет процентной ставки на високосный день
 
   int counter = _months;  // Устанавливаем счетчик на количество месяцев
 
-  while (counter >= 0) {  // Пока счетчик не достиг нуля
+  while (counter >= 0) {
     int numDays = mathHelper::GetDaysCount(
-        startMonth, startYear);  // Получаем количество дней в месяце
+        startMonth, startYear);
     int paymentDays = 0;  // Счетчик дней выплат
     double monthSum = 0;  // Общая сумма за месяц
 
     for (int day = 1; day <= numDays; ++day) {  // Проходим по всем дням месяца
-      if (totalSum < 0) {  // Если общая сумма становится отрицательной
+      if (totalSum < 0) {
         throw s21::FinanceOperationNoMoneyException("No money :(");
       }
 
@@ -307,8 +307,13 @@ void DepositModel::CalculateHandle() {
     }
   }
 
-  totalTax = mathHelper::Round(totalInterestPayment * (_tax / 100),
-                               2);  // Рассчитываем общий налог на доход
+  if (totalInterestPayment > 1000000 * 0.16) {
+    totalTax = mathHelper::Round((totalInterestPayment - 1000000 * 0.16) * (_tax / 100),
+                                 2);
+  }
+
+//  totalTax = mathHelper::Round(totalInterestPayment * (_tax / 100),
+//                               2);
   interestAmount =
       totalInterestPayment;  // Записываем общую сумму выплаты процентов
   depositAmount = totalSum;  // Записываем общую сумму вклада

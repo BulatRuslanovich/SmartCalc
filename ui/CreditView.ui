@@ -99,32 +99,6 @@ color:rgb(255, 255, 255);
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_7">
          <item>
-          <widget class="QLabel" name="label_13">
-           <property name="maximumSize">
-            <size>
-             <width>25</width>
-             <height>25</height>
-            </size>
-           </property>
-           <property name="toolTip">
-            <string notr="true">Аннуитетный платеж – вариант
-             ежемесячного платежа по кредиту, когда
-             размер ежемесячного платежа остаётся
-             постоянным на всём периоде
-             кредитования.</string>
-           </property>
-           <property name="text">
-            <string/>
-           </property>
-           <property name="pixmap">
-            <pixmap>:/images/info.png</pixmap>
-           </property>
-           <property name="scaledContents">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item>
           <widget class="QRadioButton" name="annuityRadio">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
@@ -144,33 +118,6 @@ color:rgb(255, 255, 255);
        </item>
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_8">
-         <item>
-          <widget class="QLabel" name="label_22">
-           <property name="maximumSize">
-            <size>
-             <width>25</width>
-             <height>25</height>
-            </size>
-           </property>
-           <property name="toolTip">
-            <string notr="true">Дифференцированный платеж – вариант
-             ежемесячного платежа по кредиту, когда
-             размер ежемесячного платежа по
-             погашению кредита постепенно
-             уменьшается к концу периода
-             кредитования.</string>
-           </property>
-           <property name="text">
-            <string/>
-           </property>
-           <property name="pixmap">
-            <pixmap>:/images/info.png</pixmap>
-           </property>
-           <property name="scaledContents">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
          <item>
           <widget class="QRadioButton" name="differentiatedRadio">
            <property name="text">
@@ -195,8 +142,10 @@ color:rgb(255, 255, 255);
         </size>
        </property>
        <property name="styleSheet">
-        <string notr="true">
-</string>
+        <string notr="true">QPushButton {
+	background-color: rgb(230,97,0);
+	color: rgb(255, 255, 255);
+}</string>
        </property>
        <property name="text">
         <string>Рассчитать</string>
@@ -258,7 +207,7 @@ color:rgb(255, 255, 255);
           </font>
          </property>
          <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#c3c3c3;&quot;&gt;Руб.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;₽&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
        </item>
@@ -299,7 +248,7 @@ color:rgb(255, 255, 255);
           </font>
          </property>
          <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#c3c3c3;&quot;&gt;Руб.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;₽&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
        </item>
@@ -340,7 +289,7 @@ color:rgb(255, 255, 255);
           </font>
          </property>
          <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#c3c3c3;&quot;&gt;Руб.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;₽&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
        </item>

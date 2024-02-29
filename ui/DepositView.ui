@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>647</width>
-    <height>596</height>
+    <width>634</width>
+    <height>658</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -41,8 +41,8 @@ color:rgb(255, 255, 255);
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>627</width>
-        <height>576</height>
+        <width>614</width>
+        <height>638</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_10">
@@ -74,7 +74,7 @@ color:rgb(255, 255, 255);
               </font>
              </property>
              <property name="text">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#c3c3c3;&quot;&gt;Руб.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;₽&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
             </widget>
            </item>
@@ -160,37 +160,8 @@ color:rgb(255, 255, 255);
            </item>
           </layout>
          </item>
-         <item row="4" column="0">
-          <widget class="QLabel" name="label_17">
-           <property name="text">
-            <string>Налоговая ставка</string>
-           </property>
-          </widget>
-         </item>
          <item row="4" column="1">
-          <layout class="QHBoxLayout" name="horizontalLayout_23">
-           <item>
-            <widget class="QLineEdit" name="depositTaxEdit"/>
-           </item>
-           <item>
-            <widget class="QLabel" name="label_31">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="font">
-              <font>
-               <italic>true</italic>
-              </font>
-             </property>
-             <property name="text">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#c3c3c3;&quot;&gt;%&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
+          <layout class="QHBoxLayout" name="horizontalLayout_23"/>
          </item>
          <item row="5" column="0">
           <widget class="QLabel" name="label_18">
@@ -382,6 +353,12 @@ color:rgb(255, 255, 255);
              <height>0</height>
             </size>
            </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+	background-color: rgb(230,97,0);
+	color: rgb(255, 255, 255);
+}</string>
+           </property>
            <property name="text">
             <string>Рассчитать</string>
            </property>
@@ -451,7 +428,7 @@ color:rgb(255, 255, 255);
               </font>
              </property>
              <property name="text">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#c3c3c3;&quot;&gt;Руб.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              <string>₽</string>
              </property>
             </widget>
            </item>
@@ -492,7 +469,7 @@ color:rgb(255, 255, 255);
               </font>
              </property>
              <property name="text">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#c3c3c3;&quot;&gt;Руб.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              <string>₽</string>
              </property>
             </widget>
            </item>
@@ -533,7 +510,48 @@ color:rgb(255, 255, 255);
               </font>
              </property>
              <property name="text">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#c3c3c3;&quot;&gt;Руб.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              <string>₽</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="label">
+           <property name="text">
+            <string>Доход с вычитом налога</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <layout class="QHBoxLayout" name="horizontalLayout">
+           <item>
+            <widget class="QLabel" name="depositResult4">
+             <property name="font">
+              <font>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="text">
+              <string>0.00</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_39">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="font">
+              <font>
+               <italic>true</italic>
+              </font>
+             </property>
+             <property name="text">
+              <string>₽</string>
              </property>
             </widget>
            </item>

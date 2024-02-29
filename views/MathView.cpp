@@ -107,6 +107,7 @@ void MathView::SetupButtons() {
           SLOT(HandlePointButton()));
   connect(_ui->backspaceButton, SIGNAL(clicked()), this,
           SLOT(HandleBackspaceButton()));
+  connect(_ui->pow2Button, SIGNAL(clicked()), this, SLOT(HandleButtonPow2()));
   
   // Слоты для обработки изменений в текстовых полях калькулятора
   connect(_ui->xEdit, SIGNAL(textChanged(QString)), this,
@@ -224,6 +225,11 @@ void MathView::HandleButtonRBracket() {
 void MathView::HandleButtonPow() {
   _controller->SetExpression(GetViewMathExpression());
   _controller->ExpressionAdd("^");
+}
+
+void MathView::HandleButtonPow2() {
+  _controller->SetExpression(GetViewMathExpression());
+  _controller->ExpressionAdd("^2");
 }
 
 void MathView::HandleButtonCos() {

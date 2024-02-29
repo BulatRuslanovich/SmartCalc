@@ -49,7 +49,7 @@ class DepositView final : public QWidget,
   void SetDepositSumError(const QString& errorText);
   void SetDepositMonthsError(const QString& errorText);
   void SetDepositInterestError(const QString& errorText);
-  void SetDepositTaxError(const QString& errorText);
+//  void SetDepositTaxError(const QString& errorText);
   void SetDepositDateStartError(const QString& errorText);
   void SetDepositAddMoneyError(const QString& errorText);
   void SetDepositSubMoneyError(const QString& errorText);
@@ -57,7 +57,7 @@ class DepositView final : public QWidget,
   void ResetDepositSumError();
   void ResetDepositMonthsError();
   void ResetDepositInterestError();
-  void ResetDepositTaxError();
+//  void ResetDepositTaxError();
   void ResetDepositDateStartError();
   void ResetAllErrors();
 
@@ -74,7 +74,7 @@ class DepositView final : public QWidget,
   void HandleDepositSumChanged();
   void HandleDepositMonthsChanged();
   void HandleDepositInterestChanged();
-  void HandleDepositTaxChanged();
+//  void HandleDepositTaxChanged();
   void HandleDepositDateStartChanged();
 };
 
