@@ -46,7 +46,7 @@ class TokenTypeMapper final {
         {"cos", cosToken},    {"sin", sinToken},    {"tan", tanToken},
         {"acos", acosToken},  {"asin", asinToken},  {"atan", atanToken},
         {"sqrt", sqrtToken},  {"ln", lnToken},      {"log", logToken},
-        {"pi", piToken}};
+        {"pi", piToken}, {"!", factorialToken}};
     return types_map;
   }
 };

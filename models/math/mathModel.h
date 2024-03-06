@@ -7,6 +7,8 @@
 #include <list>
 #include <stack>
 #include <string>
+#include <cassert>
+#include <cstdint>
 
 #include "../calcException.h"
 #include "tokenHandle.h"
@@ -58,6 +60,19 @@ class MathModel final {
   std::string rpnExpression;
   std::list<Token> tokensList;
   double mathResult;
+
+
+  double factorial(double value) const;
+};
+
+template<int N>
+struct Table {
+  constexpr Table() : t() {
+    t[0] = 1;
+    for (auto i = 1; i < N; ++i)
+      t[i] = t[i - 1] * i;
+  }
+  std::uint64_t t[N];
 };
 
 }  // namespace s21

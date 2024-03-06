@@ -385,6 +385,9 @@ double MathModel::CalcUnaryOp(double value, TokenType type) const noexcept {
     case logToken:
       result = std::log10(value);
       break;
+    case factorialToken:
+      result = MathModel::factorial(value);
+      break;
     default:
       break;
   }
@@ -429,4 +432,12 @@ double MathModel::CalcBinaryOp(double value1, double value2,
 
   return result;
 }
+
+double MathModel::factorial(double value) const {
+  constexpr auto table = Table<66>();
+  assert(value >= 0);
+  return value < 66 ? static_cast<double>(table.t[static_cast<int>(value)]) : 0;
+}
+
+
 }  // namespace s21

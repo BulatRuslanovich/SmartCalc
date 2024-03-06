@@ -107,6 +107,8 @@ Token Token::MakeToken(TokenType type, double value,
       return Token{piToken, "pi", 0, true, Token::PI};
     case eToken:
       return Token{eToken, "e", 0, true, Token::E};
+    case factorialToken:
+    return Token{factorialToken, "!", 3, true};
     case unknownToken:
     default:
       return Token{unknownToken, "", 0, false};
@@ -139,7 +141,7 @@ bool Token::IsFunc() const noexcept {
 bool Token::IsOperator() const noexcept {
   return type == addToken || type == subToken || type == divToken ||
          type == mulToken || type == powToken || type == unMinusToken ||
-         type == unPlusToken || type == modToken;
+         type == unPlusToken || type == modToken || type == factorialToken;
 }
 
 /**
@@ -147,7 +149,7 @@ bool Token::IsOperator() const noexcept {
  * \return True, если токен является унарным, иначе False.
  */
 bool Token::IsUnary() const noexcept {
-  return type == unMinusToken || type == unPlusToken || IsFunc();
+  return type == unMinusToken || type == unPlusToken || IsFunc() || type == factorialToken;
 }
 
 /**

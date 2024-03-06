@@ -119,13 +119,6 @@ background-color:rgb(53,53,53);
        </property>
       </widget>
      </item>
-     <item row="1" column="4">
-      <widget class="QPushButton" name="piButton">
-       <property name="text">
-        <string>π</string>
-       </property>
-      </widget>
-     </item>
      <item row="1" column="3">
       <widget class="QPushButton" name="modButton">
        <property name="palette">
@@ -167,19 +160,6 @@ background-color:rgb(53,53,53);
        </property>
        <property name="text">
         <string>mod</string>
-       </property>
-      </widget>
-     </item>
-     <item row="9" column="0">
-      <widget class="QPushButton" name="num0Button">
-       <property name="styleSheet">
-        <string notr="true">QPushButton {
-	background-color: rgb(80,80,80);
-	color: rgb(255, 255, 255);
-}</string>
-       </property>
-       <property name="text">
-        <string>0</string>
        </property>
       </widget>
      </item>
@@ -266,13 +246,6 @@ background-color:rgb(53,53,53);
        </property>
       </widget>
      </item>
-     <item row="9" column="2">
-      <widget class="QPushButton" name="eButton">
-       <property name="text">
-        <string>e</string>
-       </property>
-      </widget>
-     </item>
      <item row="7" column="1">
       <widget class="QPushButton" name="num2Button">
        <property name="styleSheet">
@@ -283,13 +256,6 @@ background-color:rgb(53,53,53);
        </property>
        <property name="text">
         <string>2</string>
-       </property>
-      </widget>
-     </item>
-     <item row="5" column="4">
-      <widget class="QPushButton" name="pow2Button">
-       <property name="text">
-        <string>x^2</string>
        </property>
       </widget>
      </item>
@@ -541,13 +507,6 @@ background-color:rgb(53,53,53);
        </property>
       </widget>
      </item>
-     <item row="3" column="4">
-      <widget class="QPushButton" name="sqrtButton">
-       <property name="text">
-        <string>√</string>
-       </property>
-      </widget>
-     </item>
      <item row="3" column="1">
       <widget class="QPushButton" name="num8Button">
        <property name="styleSheet">
@@ -571,42 +530,6 @@ background-color:rgb(53,53,53);
        </property>
        <property name="text">
         <string>1</string>
-       </property>
-      </widget>
-     </item>
-     <item row="9" column="1">
-      <widget class="QPushButton" name="pointButton">
-       <property name="text">
-        <string>.</string>
-       </property>
-      </widget>
-     </item>
-     <item row="7" column="4" rowspan="3">
-      <widget class="QPushButton" name="calcButton">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="autoFillBackground">
-        <bool>false</bool>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QPushButton {
-	background-color: rgb(230,97,0);
-	color: rgb(255, 255, 255);
-	height: 52px;
-}</string>
-       </property>
-       <property name="text">
-        <string>=</string>
-       </property>
-       <property name="autoDefault">
-        <bool>false</bool>
-       </property>
-       <property name="default">
-        <bool>false</bool>
        </property>
       </widget>
      </item>
@@ -666,56 +589,7 @@ background-color:rgb(53,53,53);
      <item row="7" column="9">
       <widget class="QPushButton" name="powButton">
        <property name="text">
-        <string>x^y</string>
-       </property>
-      </widget>
-     </item>
-     <item row="9" column="3">
-      <widget class="QPushButton" name="subButton">
-       <property name="palette">
-        <palette>
-         <active>
-          <colorrole role="ButtonText">
-           <brush brushstyle="SolidPattern">
-            <color alpha="255">
-             <red>0</red>
-             <green>170</green>
-             <blue>0</blue>
-            </color>
-           </brush>
-          </colorrole>
-         </active>
-         <inactive>
-          <colorrole role="ButtonText">
-           <brush brushstyle="SolidPattern">
-            <color alpha="255">
-             <red>0</red>
-             <green>170</green>
-             <blue>0</blue>
-            </color>
-           </brush>
-          </colorrole>
-         </inactive>
-         <disabled>
-          <colorrole role="ButtonText">
-           <brush brushstyle="SolidPattern">
-            <color alpha="255">
-             <red>160</red>
-             <green>161</green>
-             <blue>162</blue>
-            </color>
-           </brush>
-          </colorrole>
-         </disabled>
-        </palette>
-       </property>
-       <property name="font">
-        <font>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string>−</string>
+        <string>x ʸ</string>
        </property>
       </widget>
      </item>
@@ -841,6 +715,146 @@ background-color:rgb(53,53,53);
       <widget class="Line" name="line">
        <property name="orientation">
         <enum>Qt::Vertical</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="8" column="3">
+      <widget class="QPushButton" name="subButton">
+       <property name="palette">
+        <palette>
+         <active>
+          <colorrole role="ButtonText">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>0</red>
+             <green>170</green>
+             <blue>0</blue>
+            </color>
+           </brush>
+          </colorrole>
+         </active>
+         <inactive>
+          <colorrole role="ButtonText">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>0</red>
+             <green>170</green>
+             <blue>0</blue>
+            </color>
+           </brush>
+          </colorrole>
+         </inactive>
+         <disabled>
+          <colorrole role="ButtonText">
+           <brush brushstyle="SolidPattern">
+            <color alpha="255">
+             <red>160</red>
+             <green>161</green>
+             <blue>162</blue>
+            </color>
+           </brush>
+          </colorrole>
+         </disabled>
+        </palette>
+       </property>
+       <property name="font">
+        <font>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>−</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="4">
+      <widget class="QPushButton" name="piButton">
+       <property name="text">
+        <string>π</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="4">
+      <widget class="QPushButton" name="sqrtButton">
+       <property name="text">
+        <string>√</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="4">
+      <widget class="QPushButton" name="pow2Button">
+       <property name="text">
+        <string>x²</string>
+       </property>
+      </widget>
+     </item>
+     <item row="8" column="2">
+      <widget class="QPushButton" name="eButton">
+       <property name="text">
+        <string>e</string>
+       </property>
+      </widget>
+     </item>
+     <item row="8" column="1">
+      <widget class="QPushButton" name="pointButton">
+       <property name="text">
+        <string>.</string>
+       </property>
+      </widget>
+     </item>
+     <item row="8" column="0">
+      <widget class="QPushButton" name="num0Button">
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+	background-color: rgb(80,80,80);
+	color: rgb(255, 255, 255);
+}</string>
+       </property>
+       <property name="text">
+        <string>0</string>
+       </property>
+      </widget>
+     </item>
+     <item row="7" column="4" rowspan="2">
+      <widget class="QPushButton" name="calcButton">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="autoFillBackground">
+        <bool>false</bool>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+	background-color: rgb(230,97,0);
+	color: rgb(255, 255, 255);
+	height: 52px;
+}</string>
+       </property>
+       <property name="text">
+        <string>=</string>
+       </property>
+       <property name="autoDefault">
+        <bool>false</bool>
+       </property>
+       <property name="default">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+     <item row="8" column="6">
+      <widget class="QPushButton" name="powMinusButton">
+       <property name="text">
+        <string>x⁻¹</string>
+       </property>
+      </widget>
+     </item>
+     <item row="8" column="7">
+      <widget class="QPushButton" name="factorialButton">
+       <property name="text">
+        <string>!</string>
        </property>
       </widget>
      </item>

@@ -108,7 +108,9 @@ void MathView::SetupButtons() {
   connect(_ui->backspaceButton, SIGNAL(clicked()), this,
           SLOT(HandleBackspaceButton()));
   connect(_ui->pow2Button, SIGNAL(clicked()), this, SLOT(HandleButtonPow2()));
-  
+  connect(_ui->powMinusButton, SIGNAL(clicked()), this, SLOT(HandleButtonPowMinusOne()));
+  connect(_ui->factorialButton, SIGNAL(clicked()), this, SLOT(HandleButtonFactorial()));
+
   // Слоты для обработки изменений в текстовых полях калькулятора
   connect(_ui->xEdit, SIGNAL(textChanged(QString)), this,
           SLOT(HandleXEditChanged()));
@@ -231,6 +233,11 @@ void MathView::HandleButtonPow2() {
   _controller->SetExpression(GetViewMathExpression());
   _controller->ExpressionAdd("^2");
 }
+void MathView::HandleButtonPowMinusOne() {
+  _controller->SetExpression(GetViewMathExpression());
+  _controller->ExpressionAdd("^~1");
+}
+
 
 void MathView::HandleButtonCos() {
   _controller->SetExpression(GetViewMathExpression());
@@ -345,6 +352,11 @@ void MathView::HandleButtonNum9() {
 void MathView::HandleButtonUnaryMinus() {
   _controller->SetExpression(GetViewMathExpression());
   _controller->ExpressionAdd("~");
+}
+
+void MathView::HandleButtonFactorial() {
+  _controller->SetExpression(GetViewMathExpression());
+  _controller->ExpressionAdd("!");
 }
 
 void MathView::HandleXEditChanged() { ResetXValueError(); }

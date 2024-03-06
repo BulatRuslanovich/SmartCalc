@@ -70,6 +70,7 @@ class MathView final : public QWidget,
   void HandleButtonRBracket();
   void HandleButtonPow();
   void HandleButtonPow2();
+  void HandleButtonPowMinusOne();
   void HandleButtonCos();
   void HandleButtonSin();
   void HandleButtonTan();
@@ -96,6 +97,7 @@ class MathView final : public QWidget,
 
   void HandleXEditChanged();
   void HandleInputChanged();
+  void HandleButtonFactorial();
 };
 
 }  // namespace s21
