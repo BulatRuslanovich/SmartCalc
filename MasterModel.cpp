@@ -22,6 +22,10 @@ void MasterModel::SetExpression(const std::string& newExp) {
   mathModel->setExpression(newExp);
 }
 
+void MasterModel::SetRadDegFactor(double value) {
+  mathModel->setRadDegFactor(value);
+}
+
 void MasterModel::SetX(double x) {
   mathModel->setX(x);
 }

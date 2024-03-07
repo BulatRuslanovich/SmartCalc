@@ -15,4 +15,8 @@ void MathController::ExpressionAdd(const char *add) {
 }
 void MathController::ExpressionEraseEnd() { _model->ExpressionDeleteEnd(); }
 void MathController::CalculateX() { _model->CalculateX(); }
+void MathController::SetRadDegFactor(double value) {
+  _model->SetRadDegFactor(value);
+}
+
 }  // namespace s21

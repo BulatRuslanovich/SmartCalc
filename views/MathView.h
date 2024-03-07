@@ -95,9 +95,11 @@ class MathView final : public QWidget,
   void HandleButtonNum9();
   void HandleButtonUnaryMinus();
 
+
   void HandleXEditChanged();
   void HandleInputChanged();
   void HandleButtonFactorial();
+  void HandleButtonRadDeg();
 };
 
 }  // namespace s21

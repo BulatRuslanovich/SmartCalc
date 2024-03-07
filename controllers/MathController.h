@@ -26,9 +26,9 @@ class MathController : public IMathController {
   void SetX(double x) override;
   void ExpressionAdd(const char* add) override;
   void ExpressionEraseEnd() override;
+  void SetRadDegFactor(double value) override;
 
   void CalculateX() override;
-
  private:
   IMathModel* _model;
 };

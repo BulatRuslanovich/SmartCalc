@@ -110,6 +110,7 @@ void MathView::SetupButtons() {
   connect(_ui->pow2Button, SIGNAL(clicked()), this, SLOT(HandleButtonPow2()));
   connect(_ui->powMinusButton, SIGNAL(clicked()), this, SLOT(HandleButtonPowMinusOne()));
   connect(_ui->factorialButton, SIGNAL(clicked()), this, SLOT(HandleButtonFactorial()));
+  connect(_ui->radDegButton, SIGNAL(clicked()), this, SLOT(HandleButtonRadDeg()));
 
   // Слоты для обработки изменений в текстовых полях калькулятора
   connect(_ui->xEdit, SIGNAL(textChanged(QString)), this,
@@ -357,6 +358,17 @@ void MathView::HandleButtonUnaryMinus() {
 void MathView::HandleButtonFactorial() {
   _controller->SetExpression(GetViewMathExpression());
   _controller->ExpressionAdd("!");
+}
+
+void MathView::HandleButtonRadDeg() {
+  if (_ui->radDegButton->text() == "RAD") {
+    _ui->radDegButton->setText("DEG");
+    _controller->SetRadDegFactor(M_PI / 180);
+
+  } else {
+    _ui->radDegButton->setText("RAD");
+    _controller->SetRadDegFactor(1);
+  }
 }
 
 void MathView::HandleXEditChanged() { ResetXValueError(); }

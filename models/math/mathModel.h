@@ -31,6 +31,7 @@ class MathModel final {
 
   void setExpression(const std::string& newExpression);
   void setX(double newX) { this->x = newX; };
+  void setRadDegFactor(double radDegFactor) {this->radDegFactor = radDegFactor; };
   void ExpressionAddString(const std::string& str);
   void ExpressionDeleteEnd();
 
@@ -60,6 +61,7 @@ class MathModel final {
   std::string rpnExpression;
   std::list<Token> tokensList;
   double mathResult;
+  double radDegFactor;
 
 
   double factorial(double value) const;

@@ -132,6 +132,7 @@ class MasterModel final : public IMathModel, public ICreditModel, public IDeposi
   void AnnunciatorErrorCreditObservers(const std::pair<std::string, std::string>& error);
   void AnnunciatorUpdateDepositObservers();
   void AnnunciatorErrorDepositObservers(const std::pair<std::string, std::string>& error);
+  void SetRadDegFactor(double value);
 };
 
 }  // namespace s21

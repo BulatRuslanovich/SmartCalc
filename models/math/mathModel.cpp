@@ -28,7 +28,8 @@ MathModel::MathModel(const std::string& str)
       expression(str),
       rpnExpression(""),
       tokensList({}),
-      mathResult(std::numeric_limits<double>::quiet_NaN()) {}
+      mathResult(std::numeric_limits<double>::quiet_NaN()),
+      radDegFactor(1) {};
 
 /**
  * \brief Устанавливает новое математическое выражение.
@@ -359,13 +360,13 @@ double MathModel::CalcUnaryOp(double value, TokenType type) const noexcept {
       result = 0 - value;
       break;
     case cosToken:
-      result = std::cos(value);
+      result = std::cos(value * radDegFactor);
       break;
     case sinToken:
-      result = std::sin(value);
+      result = std::sin(value * radDegFactor);
       break;
     case tanToken:
-      result = std::tan(value);
+      result = std::tan(value * radDegFactor);
       break;
     case acosToken:
       result = std::acos(value);
@@ -394,6 +395,7 @@ double MathModel::CalcUnaryOp(double value, TokenType type) const noexcept {
 
   return result;
 }
+
 
 /**
  * @brief Выполняет бинарную операцию над двумя значениями.
