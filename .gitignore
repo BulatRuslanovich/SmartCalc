@@ -33,3 +33,5 @@
 
 #my adds
 *.idea
+/build
+/cmake-build-debug
