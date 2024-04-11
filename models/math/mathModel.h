@@ -20,7 +20,7 @@ class MathModel final {
   static constexpr std::size_t maxInputSize = 255;
 
   MathModel();
-  explicit MathModel(const std::string& str);
+  explicit MathModel(std::string  str);
 
   MathModel(const MathModel& other) = delete;
   MathModel(MathModel&& other) = delete;
@@ -31,15 +31,15 @@ class MathModel final {
 
   void setExpression(const std::string& newExpression);
   void setX(double newX) { this->x = newX; };
-  void setRadDegFactor(double radDegFactor) {this->radDegFactor = radDegFactor; };
+  void setRadDegFactor(double radDegFactor) { this->radDegFactor = radDegFactor; };
   void ExpressionAddString(const std::string& str);
   void ExpressionDeleteEnd();
 
-  std::string getExpression() const { return expression; };
+  [[nodiscard]] std::string getExpression() const { return expression; };
   std::string getRpnExpression();
-  double getX_Value() const noexcept { return x; };
-  double getResult() const noexcept { return mathResult; };
-  bool getIsCalc() const noexcept { return isCalc; };
+  [[nodiscard]] double getX_Value() const noexcept { return x; };
+  [[nodiscard]] double getResult() const noexcept { return mathResult; };
+  [[nodiscard]] bool getIsCalc() const noexcept { return isCalc; };
 
   void Calculate();
 
@@ -49,9 +49,9 @@ class MathModel final {
   void InitCalcMachine();
   void ResetModelResults() noexcept;
   double CalcX(double x = 0);
-  double CalcUnaryOp(double value, TokenType type) const noexcept;
-  double CalcBinaryOp(double value1, double value2,
-                      TokenType type) const noexcept;
+  [[nodiscard]] double CalcUnaryOp(double value, TokenType type) const noexcept;
+  [[nodiscard]] static double CalcBinaryOp(double value1, double value2,
+                      TokenType type) noexcept;
   static void AppendStrWithPopStack(std::string& res, std::stack<Token>& stack,
                                     std::string& str);
   bool needInit;
@@ -64,7 +64,7 @@ class MathModel final {
   double radDegFactor;
 
 
-  double factorial(double value) const;
+  static double factorial(double value) ;
 };
 
 template<int N>

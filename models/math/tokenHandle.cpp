@@ -32,8 +32,7 @@ std::list<Token> tokenHandle::ParseTokens(const std::string& str) {
   while (!view.empty()) {
     if (std::isdigit(view.front())) {
       auto [token, newView] = GetNumTokenFromStr(view);
-      view = newView;  // ? auto [token, view] = GetNumTokenFromStr(view); не
-                       // работает
+      view = newView;
       tokenList.push_back(token);
     } else {
       auto [token, newView] = GetNoNumTokenFromStr(view);
@@ -173,7 +172,7 @@ std::string tokenHandle::AddTokenToStr(const std::string& str,
 
     if (token.type == unMinusToken) {
       tokenHandle::AddUnMinusToList(tokenList);
-    } else if (token.type == lBracketToken) {  // ...) + * + (
+    } else if (token.type == lBracketToken) {
       if (prevToken.IsConst() || prevToken.type == rBracketToken) {
         tokenList.push_back(Token::MakeToken(mulToken));
       }
@@ -181,7 +180,7 @@ std::string tokenHandle::AddTokenToStr(const std::string& str,
       tokenList.push_back(token);
     } else if (token.IsConst()) {
       if (token.type == numberToken &&
-          prevToken.type == numberToken) {  // ...4 + 3
+          prevToken.type == numberToken) {
         tokenList.back().str.append(token.str);
       } else {
         if (prevToken.IsConst() || prevToken.type == rBracketToken) {
@@ -197,34 +196,28 @@ std::string tokenHandle::AddTokenToStr(const std::string& str,
       tokenList.push_back(token);
       tokenList.push_back(Token::MakeToken(lBracketToken));
     } else if (token.IsOperator()) {
-      // -* +* (*
       if (prevToken.type == unMinusToken || prevToken.type == unPlusToken ||
           prevToken.type == lBracketToken) {
         throw std::logic_error("Operator error");
       } else if (prevToken.IsOperator()) {
         tokenList.pop_back();
         tokenList.push_back(
-            token);  // TODO: узнать, должен ли он вести себя так при двух
-                     // операторах подряд. ТК хрень получается какая то
+            token);
       } else {
         tokenList.push_back(token);
       }
     } else if (token.type == rBracketToken) {
-      // () шоб таких не было приколов
       if (prevToken.type == lBracketToken) {
         throw std::logic_error("Operator error");
-        // ...)) и таких прЕколов не должно быть (вот за*бусь писать тесты для
-        // этого)
       } else if (!IsLBracketExist(tokenList)) {
         throw std::logic_error("Operator error");
       } else if (prevToken.IsOperator()) {
-        // ...-)
         if (prevToken.type == unMinusToken || prevToken.type == unPlusToken) {
           throw std::logic_error("Operator error");
         } else {
           tokenList.pop_back();
           tokenList.push_back(
-              token);  // TODO: хотите сказать он должен хавать ...*)
+              token);
         }
       } else {
         tokenList.push_back(token);
@@ -282,8 +275,7 @@ std::string tokenHandle::RemoveTokenFromStrEnd(const std::string& str) {
     if (lastToken.type == numberToken) {
       tokenList.back().str.erase(
           --(tokenList.back()
-                 .str.end()));  //-- для того чтобы указывать на ластовый, тк
-                                //end() указывает на элемент после ластового
+                 .str.end()));
 
       // если число было из одного символа
       if (tokenList.back().str.empty()) {
@@ -296,7 +288,6 @@ std::string tokenHandle::RemoveTokenFromStrEnd(const std::string& str) {
         if (!tokenList.empty()) {
           Token afterLastToken = tokenList.back();
 
-          // если затереть ...sin( то синус тоже должен отлететь
           if (afterLastToken.IsFunc()) {
             tokenList.pop_back();
           }
@@ -323,34 +314,6 @@ std::string tokenHandle::ListToStr(const std::list<Token>& list) {
   auto tokenBegin = list.begin();
   auto tokenEnd = list.end();
   int lastNum = static_cast<int>(list.size() - 1);
-  // Выражения (int) и static_cast<int> используются для приведения типов
-  // в C++ и выполняют аналогичную функцию, но есть некоторые
-  // различия в их применении:
-  //
-  // (int) expression: Это старый стиль приведения типов,
-  // известный как C-style cast. Он просто приводит выражение
-  // expression к типу int. Вместо явного указания типа, как
-  // это делает static_cast, он использует синтаксис скобок и
-  // типа внутри скобок для определения типа приведения.
-  //
-  // static_cast<int>(expression): Это новый стиль приведения
-  // типов в C++, который выполняет явное преобразование типа.
-  // Он говорит компилятору явно преобразовать выражение
-  // expression к типу int. В отличие от C-style cast,
-  // static_cast более точен и позволяет лучше контролировать
-  // преобразование типов.
-  //
-  // Различия между ними:
-  //
-  // static_cast обеспечивает более явное и строгое
-  // преобразование типов, что делает код более читаемым и понятным.
-  //( int) может привести к неоднозначности и
-  // нежелательному поведению в некоторых случаях,
-  // например, если используется для приведения
-  // указателя к целочисленному типу.
-  // В общем случае рекомендуется использовать
-  // static_cast, так как он предоставляет больше
-  // контроля и явно указывает на операцию преобразования типа в коде.
 
   for (int i = 0; tokenBegin != tokenEnd; ++tokenBegin, ++i) {
     result.append((*tokenBegin).str);

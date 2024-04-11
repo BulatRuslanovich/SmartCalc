@@ -98,25 +98,25 @@ class DepositModel {
 
   void AddOperation(int year, int month, int day, double amount) {
     operationsList.emplace_back(
-        year, month, day, amount);  // пока не знаю, но тут могут быть проблемы
+        year, month, day, amount);
     _isCalc = false;
   }
 
-  double getSum() const noexcept { return _sum; }
-  int getMonths() const noexcept { return _months; }
-  double getInterest() const noexcept { return _interest; }
-  double getTax() const noexcept { return _tax; }
-  PayPeriodDepositType getPayPeriod() const noexcept { return payPeriod; }
+  [[nodiscard]] double getSum() const noexcept { return _sum; }
+  [[nodiscard]] int getMonths() const noexcept { return _months; }
+  [[nodiscard]] double getInterest() const noexcept { return _interest; }
+  [[nodiscard]] double getTax() const noexcept { return _tax; }
+  [[nodiscard]] PayPeriodDepositType getPayPeriod() const noexcept { return payPeriod; }
 
-  bool getCapitalization() const noexcept { return _capitalization; }
-  int getYearStart() const noexcept { return yearStart; }
-  int getMonthStart() const noexcept { return monthStart; }
-  int getDayStart() const noexcept { return dayStart; }
+  [[nodiscard]] bool getCapitalization() const noexcept { return _capitalization; }
+  [[nodiscard]] int getYearStart() const noexcept { return yearStart; }
+  [[nodiscard]] int getMonthStart() const noexcept { return monthStart; }
+  [[nodiscard]] int getDayStart() const noexcept { return dayStart; }
 
-  double getInterestAmount() const noexcept { return interestAmount; }
-  double getDepositAmount() const noexcept { return depositAmount; }
-  double getTaxAmount() const noexcept { return taxAmount; }
-  bool getIsCalc() const noexcept { return _isCalc; }
+  [[nodiscard]] double getInterestAmount() const noexcept { return interestAmount; }
+  [[nodiscard]] double getDepositAmount() const noexcept { return depositAmount; }
+  [[nodiscard]] double getTaxAmount() const noexcept { return taxAmount; }
+  [[nodiscard]] bool getIsCalc() const noexcept { return _isCalc; }
 
   void CalculateDeposit();
   void ClearOperationsList() noexcept {
@@ -127,12 +127,11 @@ class DepositModel {
  private:
   void ResetModelResults() noexcept;
   void CheckModelData() const;
-  bool CheckSum() const noexcept;
-  bool CheckSum(double sum) const noexcept;
-  bool CheckMonth() const noexcept;
-  bool CheckInterest() const noexcept;
-//  bool CheckTax() const noexcept;
-  bool CheckDate(int year, int month, int day) const noexcept;
+  [[nodiscard]] bool CheckSum() const noexcept;
+  [[nodiscard]] bool CheckSum(double sum) const noexcept;
+  [[nodiscard]] bool CheckMonth() const noexcept;
+  [[nodiscard]] bool CheckInterest() const noexcept;
+  [[nodiscard]] bool CheckDate(int year, int month, int day) const noexcept;
   void CheckOperations() const;
   void CalculateHandle();
   void OperationsHandle(int year, int month, int day, double& total_sum) const;

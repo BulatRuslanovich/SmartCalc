@@ -130,18 +130,6 @@ bool DepositModel::CheckInterest() const noexcept {
 }
 
 /**
- * @brief Проверяет корректность введенного налога для депозита.
- *
- * Метод CheckTax() проверяет корректность введенного налога для депозита.
- * @return true, если налог для депозита корректен, в противном случае - false.
- * @note Этот метод не бросает исключений (noexcept).
- */
-//bool DepositModel::CheckTax() const noexcept {
-//  return !(_tax < minDepositTax || _tax > maxDepositTax || std::isinf(_tax) ||
-//           std::isnan(_tax));
-//}
-
-/**
  * @brief Проверяет корректность даты операции с депозитом.
  *
  * Метод CheckDate() проверяет корректность введенной даты операции с депозитом.
@@ -279,7 +267,7 @@ void DepositModel::CalculateHandle() {
           monthSum,
           2);  // Округляем сумму за месяц до двух знаков после запятой
 
-      if (_capitalization) {  // Если проценты капитализируются
+      if (_capitalization) {  // Если проценты капитализируют
         totalSum += monthSum;  // Добавляем проценты за месяц к общей сумме
       }
     }
@@ -309,7 +297,7 @@ void DepositModel::CalculateHandle() {
         totalInterestPayment, 2);  // Округляем общую сумму выплаты процентов до
                                    // двух знаков после запятой
 
-    if (_capitalization) {  // Если проценты капитализируются
+    if (_capitalization) {  // Если проценты капитализируют
       totalSum += totalInterestPayment;  // Добавляем общую сумму выплаты
                                          // процентов к общей сумме
     }

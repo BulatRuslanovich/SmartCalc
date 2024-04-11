@@ -8,6 +8,7 @@
 #include <limits>
 #include <list>
 #include <stack>
+#include <utility>
 
 #include "token.h"
 
@@ -21,11 +22,11 @@ MathModel::MathModel() : MathModel("") {}
  * \brief Конструктор класса MathModel.
  * \param str Строка с математическим выражением.
  */
-MathModel::MathModel(const std::string& str)
+MathModel::MathModel(std::string str)
     : needInit(true),
       isCalc(false),
       x(0.0),
-      expression(str),
+      expression(std::move(str)),
       rpnExpression(""),
       tokensList({}),
       mathResult(std::numeric_limits<double>::quiet_NaN()),
@@ -89,7 +90,6 @@ void MathModel::ExpressionDeleteEnd() {
 
   try {
     res = tokenHandle::RemoveTokenFromStrEnd(res);
-    // если хрень какую то написали,то удаляем сие творение посимвольно
   } catch (std::invalid_argument&) {
     if (!res.empty()) {
       res.erase(--res.end());
@@ -166,7 +166,6 @@ void MathModel::CalcRpn() {
   for (; tokenBegin != tokenEnd; ++tokenBegin) {
     Token check = *tokenBegin;
 
-    // +1... плюс в начале игнорируем
     if (check.type == unPlusToken) {
       continue;
     } else if (check.IsConst()) {
@@ -406,7 +405,7 @@ double MathModel::CalcUnaryOp(double value, TokenType type) const noexcept {
  * @return Результат бинарной операции.
  */
 double MathModel::CalcBinaryOp(double value1, double value2,
-                               TokenType type) const noexcept {
+                               TokenType type) noexcept {
   double result = 0.0;
 
   switch (type) {
@@ -435,7 +434,7 @@ double MathModel::CalcBinaryOp(double value1, double value2,
   return result;
 }
 
-double MathModel::factorial(double value) const {
+double MathModel::factorial(double value) {
   constexpr auto table = Table<66>();
   assert(value >= 0);
   return value < 66 ? static_cast<double>(table.t[static_cast<int>(value)]) : 0;

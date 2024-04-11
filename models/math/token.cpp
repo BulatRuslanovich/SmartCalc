@@ -43,10 +43,10 @@ Token::Token(TokenType type, const std::string &str, int priority,
  * \param priority Приоритет токена.
  * \param left2right Направление ассоциативности оператора.
  */
-Token::Token(TokenType type, const std::string &str, int priority,
+Token::Token(TokenType type, std::string str, int priority,
              bool left2right)
     : type(type),
-      str(str),
+      str(std::move(str)),
       priority(priority),
       left2right(left2right),
       value(std::numeric_limits<double>::quiet_NaN()) {}

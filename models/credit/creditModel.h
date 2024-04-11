@@ -46,16 +46,16 @@ class CreditModel final {
     _isCalc = false;
   }
 
-  double getSum() const noexcept { return _sum; };
-  double getInterest() const noexcept { return _interest; };
-  int getMonths() const noexcept { return _months; };
-  CreditType getType() const noexcept { return _type; };
-  bool getIsCalc() const noexcept { return _isCalc; };
+  [[nodiscard]] double getSum() const noexcept { return _sum; };
+  [[nodiscard]] double getInterest() const noexcept { return _interest; };
+  [[nodiscard]] int getMonths() const noexcept { return _months; };
+  [[nodiscard]] CreditType getType() const noexcept { return _type; };
+  [[nodiscard]] bool getIsCalc() const noexcept { return _isCalc; };
 
-  double getPaymentMin() const noexcept { return paymentMin; };
-  double getPaymentMax() const noexcept { return paymentMax; };
-  double getOverPayment() const noexcept { return overPayment; };
-  double getTotalPayment() const noexcept { return totalPayment; };
+  [[nodiscard]] double getPaymentMin() const noexcept { return paymentMin; };
+  [[nodiscard]] double getPaymentMax() const noexcept { return paymentMax; };
+  [[nodiscard]] double getOverPayment() const noexcept { return overPayment; };
+  [[nodiscard]] double getTotalPayment() const noexcept { return totalPayment; };
 
   void CalculateCredit();
 
@@ -63,9 +63,9 @@ class CreditModel final {
   void ResetResults() noexcept;
   void CalculateHandle() noexcept;
   void CheckModel() const;
-  bool CheckSum() const noexcept;
-  bool CheckMonth() const noexcept;
-  bool CheckInterest() const noexcept;
+  [[nodiscard]] bool CheckSum() const noexcept;
+  [[nodiscard]] bool CheckMonth() const noexcept;
+  [[nodiscard]] bool CheckInterest() const noexcept;
 
   double _sum;
   int _months;

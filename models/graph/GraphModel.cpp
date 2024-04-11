@@ -108,7 +108,7 @@ void GraphModel::CalculateHandle() {
  * @note Этот метод не выбрасывает исключений (noexcept).
  */
 bool GraphModel::IsFunctionBreakPoint(double last,
-                                      double current) const noexcept {
+                                      double current) noexcept {
   return (std::isnan(last) && !std::isnan(current)) ||
          (std::isnan(current) && !std::isnan(last)) ||
          ((last < 0 && current > 0) || (last > 0 && current < 0)) &&

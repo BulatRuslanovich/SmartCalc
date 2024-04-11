@@ -40,7 +40,7 @@ enum TokenType {
 struct Token final {
  public:
   Token();
-  Token(TokenType type, const std::string &str, int priority, bool left2right);
+  Token(TokenType type, std::string str, int priority, bool left2right);
   Token(TokenType type, const std::string &str, int priority, bool left2right,
         double value);
 

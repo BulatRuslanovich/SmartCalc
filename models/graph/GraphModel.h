@@ -37,11 +37,11 @@ class GraphModel final {
 
   void setYScaleAuto(bool flag) noexcept { yScaleAuto = flag; }
 
-  double getXBegin() const noexcept { return xBegin; }
-  double getYBegin() const noexcept { return yBegin; }
-  double getXEnd() const noexcept { return xEnd; }
-  double getYEnd() const noexcept { return yEnd; }
-  bool getYScaleAuto() const noexcept { return yScaleAuto; }
+  [[nodiscard]] double getXBegin() const noexcept { return xBegin; }
+  [[nodiscard]] double getYBegin() const noexcept { return yBegin; }
+  [[nodiscard]] double getXEnd() const noexcept { return xEnd; }
+  [[nodiscard]] double getYEnd() const noexcept { return yEnd; }
+  [[nodiscard]] bool getYScaleAuto() const noexcept { return yScaleAuto; }
   const std::vector<std::pair<double, double>>& getPoints() { return _points; }
 
   void CalculateGraph();
@@ -58,7 +58,7 @@ class GraphModel final {
   void CalculateHandle();
   void CalculatePoints(double _xBegin, double _xEnd, double numPoints,
                        double& yMin, double& yMax, int numOfCalcPoints);
-  bool IsFunctionBreakPoint(double last, double current) const noexcept;
+  [[nodiscard]] static bool IsFunctionBreakPoint(double last, double current) noexcept;
   void SetYRange(double yMin, double yMax) noexcept;
 
   MathModel* mathModel;

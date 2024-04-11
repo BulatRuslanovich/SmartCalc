@@ -61,8 +61,8 @@ void CreditModel::ResetResults() noexcept {
  */
 void CreditModel::CalculateHandle() noexcept {
   if (_type == Annuity) {
-    double totalPay = 0;
-    double overPay = 0;
+    double totalPay;
+    double overPay;
     double monthInterest = _interest / (100 * 12);
     double monthPay =
         _sum * (monthInterest +
