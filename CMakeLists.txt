@@ -14,7 +14,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 #add_compile_options(-Wall -Wextra -Werror -pedantic)
 
 set(CMAKE_INSTALL_PREFIX "$ENV{HOME}/SmartCalc_v2.0")
-set(CMAKE_PREFIX_PATH "/home/bulatruslanovich/Desktop/Qt/6.5.3/gcc_64")
+set(CMAKE_PREFIX_PATH "/home/bulatruslanovich/Desktop/Apps/Qt/6.5.3/gcc_64")
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS PrintSupport REQUIRED)

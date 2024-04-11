@@ -210,6 +210,7 @@ void DepositModel::CalculateHandle() {
   }
 
   double totalInterestPayment = 0;  // Общая сумма выплаты процентов
+  double totalInterestPaymentForTax = 0;  // Общая сумма выплаты процентов для налога
   double totalSum = _sum;  // Общая сумма вклада
   double totalTax = 0;         // Общий налог на доход
 
@@ -285,12 +286,19 @@ void DepositModel::CalculateHandle() {
 
     totalInterestPayment +=
         monthSum;  // Добавляем сумму за месяц к общей сумме выплаты процентов
+    totalInterestPaymentForTax += monthSum;
 
     ++startMonth;  // Увеличиваем месяц на один
 
     if (startMonth == 13) {  // Если месяц стал больше 12
       startMonth = 1;  // Устанавливаем месяц в январь
       ++startYear;     // Увеличиваем год
+
+      if (totalInterestPaymentForTax > 160000) {
+        totalTax += mathHelper::Round((totalInterestPaymentForTax - 1000000 * 0.16) * (_tax / 100),
+                                     2);
+        totalInterestPaymentForTax = 0;
+      }
     }
 
     --counter;  // Уменьшаем счетчик
@@ -307,13 +315,11 @@ void DepositModel::CalculateHandle() {
     }
   }
 
-  if (totalInterestPayment > 1000000 * 0.16) {
-    totalTax = mathHelper::Round((totalInterestPayment - 1000000 * 0.16) * (_tax / 100),
+  if (totalInterestPaymentForTax > 160000) {
+    totalTax += mathHelper::Round((totalInterestPaymentForTax - 1000000 * 0.16) * (_tax / 100),
                                  2);
   }
 
-//  totalTax = mathHelper::Round(totalInterestPayment * (_tax / 100),
-//                               2);
   interestAmount =
       totalInterestPayment;  // Записываем общую сумму выплаты процентов
   depositAmount = totalSum;  // Записываем общую сумму вклада
